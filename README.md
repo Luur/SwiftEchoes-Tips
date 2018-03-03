@@ -4,6 +4,9 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+[#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)
+
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
 You can extend collections to return the element at the specified index if it is within bounds, otherwise nil.
@@ -19,6 +22,7 @@ let cars = ["Lexus", "Ford", "Volvo", "Toyota", "Opel"]
 let selectedCar1 = cars[safe: 3] // Toyota
 let selectedCar2 = cars[safe: 6] // not crash, but nil
 ```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#2 Easy way to hide Status Bar](https://twitter.com/szubyak/status/950687583222337537)
 
@@ -38,3 +42,4 @@ class TestViewController: UIViewController {
 let testVC = TestViewController()
 print("statusBarHidded \(testVC.prefersStatusBarHidden)") // true
 ```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
