@@ -5,7 +5,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 ## Table of contents
 
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
-[#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)
+[#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
+[#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -42,4 +43,16 @@ class TestViewController: UIViewController {
 let testVC = TestViewController()
 print("statusBarHidded \(testVC.prefersStatusBarHidden)") // true
 ```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#3 Enumerated iteration](https://twitter.com/szubyak/status/951039299759362048)
+
+Use `enumerated` when you iterate over the collection to return a sequence of pairs `(n, c)`, where `n` - index for each element and `c` - its value 👨‍💻💻
+```swift
+for (n, c) in "Swift".enumerated() {
+    print("\(n): \(c)")
+}
+```
+Also be careful with this tricky thing, `enumerated` on collection will not provide actual indices, but monotonically increasing integer, which happens to be the same as the index for Array but not for anything else, especially slices
+
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
