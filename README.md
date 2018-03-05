@@ -74,3 +74,21 @@ let last = colors.sorted().last
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
+## [#5 Profit to compiler](https://twitter.com/szubyak/status/954329152160780288)
+
+Do you know that using `map` gives profit to the compiler: it's now clear we want to apply some code to every item in an array, then like in `for` loop we could have `break` on halfway through.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#6 Tips for writing error messages](https://twitter.com/szubyak/status/955054366419013632)
+
+1) Say what happened and why
+2) Suggest a next step
+3) Find the right tone (If it’s a stressful or serious issue, then a silly tone would be inappropriate)
+
+You can find common​ ​types​ ​of​ ​error​ ​messages [here](https://drive.google.com/file/d/0B6f9wHapAofKRFdvU3BUbVZjckU/view) or in `sources` folder
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+
+
