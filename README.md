@@ -95,7 +95,7 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 2) Suggest a next step
 3) Find the right tone (If it’s a stressful or serious issue, then a silly tone would be inappropriate)
 
-[Common​ ​Types​ ​of​ ​Error​ ​Messages](../master/sources/6.pdf)
+[Common​ ​Types​ ​of​ ​Error​ ​Messages](../master/Sources/6/Common​​Error​​Messages.pdf)
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
@@ -104,7 +104,7 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 1) Even if you don't write UI Tests, they still take considerable amount of time to run. Just skip it.
 2) Enable code coverage stats in Xcode, it helps to find which method was tested, not tested, partly tested. But don’t pay too much attention to the percentage 😊.
 
-![](../master/images/7.jpeg)
+![](../master/Sources/7/img.jpeg)
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
@@ -172,6 +172,4 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 Unit testing shouldn’t have any side effects. While running tests, Xcode firstly launches app and thus having the side effect of executing any code we may have in our App Delegate and initial View Controller. Fake AppDelegate in your `main.swift` to prevent it.
 
-![](../master/images/11.jpeg)
-
-[main.swift](../master/classes/11/main.swift)
+You can find `main.swift` file [here](../master/Sources/11/main.swift)
