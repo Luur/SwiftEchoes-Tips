@@ -86,9 +86,20 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 2) Suggest a next step
 3) Find the right tone (If it’s a stressful or serious issue, then a silly tone would be inappropriate)
 
-You can find common​ ​types​ ​of​ ​error​ ​messages [here](https://drive.google.com/file/d/0B6f9wHapAofKRFdvU3BUbVZjckU/view) or in `sources` folder
+[Common​ ​Types​ ​of​ ​Error​ ​Messages](../master/sources/6.pdf)
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#7 Testing settings](https://twitter.com/szubyak/status/955468985121886208)
+
+1) Even if you don't write UI Tests, they still take considerable amount of time to run. Just skip it.
+2) Enable code coverage stats in Xcode, it helps to find which method was tested, not tested, partly tested. But don’t pay too much attention to the percentage 😊.
+
+![](../master/images/7.jpeg)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+
 
 
 
