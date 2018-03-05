@@ -125,3 +125,45 @@ let flatNumbers = numbers.flatMap { Int($0) } // [1, 2, 3, 4]
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
+## [#10 Invoke `didSet` when property’s value is set inside `init` context](https://twitter.com/szubyak/status/961707655105531905)
+
+Apple's docs specify that: "Property observers are only called when the property’s value is set outside of initialization context."
+
+`defer` can change situation 😊
+
+```swift
+class AA {
+    var propertyAA: String! {
+        didSet {
+            print("Function: \(#function)")
+        }
+    }
+
+    init(propertyAA: String) {
+        self.propertyAA = propertyAA
+    }
+}
+
+class BB {
+    var propertyBB: String! {
+        didSet {
+            print("Function: \(#function)")
+        }
+    }
+
+    init(propertyBB: String) {
+        defer {
+            self.propertyBB = propertyBB
+        }
+    }
+}
+
+let aa = AA(propertyAA: "aa")
+let bb = BB(propertyBB: "bb")
+```
+Result:
+
+```
+Function: propertyBB
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
