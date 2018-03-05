@@ -6,7 +6,17 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
-[#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)
+[#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
+[#4 Combinations of pure functions](https://github.com/Luur/SwiftTips#4-combinations-of-pure-functions)<br />
+[#5 Profit to compiler](https://github.com/Luur/SwiftTips#5-profit-to-compiler)<br />
+[#6 Tips for writing error messages](https://github.com/Luur/SwiftTips#6-tips-for-writing-error-messages)<br />
+[#7 Testing settings](https://github.com/Luur/SwiftTips#7-testing-settings)<br />
+[#8 `forEach` and `map` execution order difference](https://github.com/Luur/SwiftTips#8-foreach-and-map-execution-order-difference)<br />
+[#9 Change type of items in array](https://github.com/Luur/SwiftTips#9-change-type-of-items-in-array)<br />
+[#10 Invoke `didSet` when property’s value is set inside `init` context](https://github.com/Luur/SwiftTips#10-invoke-didset-when-propertys-value-is-set-inside-init-context)<br />
+[#11 Fake AppDelegate](https://github.com/Luur/SwiftTips#11-fake-appdelegate)<br />
+[#12 Semicolons in Swift](https://github.com/Luur/SwiftTips#12-semicolons-in-swift)<br />
+[#13 Group objects by property](https://github.com/Luur/SwiftTips#13-group-objects-by-property)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
