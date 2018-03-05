@@ -53,6 +53,24 @@ for (n, c) in "Swift".enumerated() {
     print("\(n): \(c)")
 }
 ```
-Also be careful with this tricky thing, `enumerated` on collection will not provide actual indices, but monotonically increasing integer, which happens to be the same as the index for Array but not for anything else, especially slices
+Also be careful with this tricky thing, `enumerated` on collection will not provide actual indices, but monotonically increasing integer, which happens to be the same as the index for Array but not for anything else, especially slices.
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#4 Combinations of pure functions](https://twitter.com/szubyak/status/953993641391017984)
+
+`flatMap` func is effectively the combination of using `map` and `joined` in a single call, in that order. It maps items in array A into array B using a func you provide, then joins the results using concatenation.
+
+Functions `min` and `max` could be also combinations of  `sorted.first` and `sorted.last` in single call.
+
+```swift
+let colors = ["red", "blue", "black", "white"]
+
+let min = colors.min()
+let first = colors.sorted().first
+
+let max = colors.max()
+let last = colors.sorted().last
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
