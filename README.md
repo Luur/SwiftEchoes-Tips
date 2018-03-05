@@ -167,3 +167,11 @@ Result:
 Function: propertyBB
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#11 Fake AppDelegate](https://twitter.com/szubyak/status/963013740265385984)
+
+Unit testing shouldn’t have any side effects. While running tests, Xcode firstly launches app and thus having the side effect of executing any code we may have in our App Delegate and initial View Controller. Fake AppDelegate in your `main.swift` to prevent it.
+
+![](../master/images/11.jpeg)
+
+[main.swift](../master/classes/11/main.swift)
