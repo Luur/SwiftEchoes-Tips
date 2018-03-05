@@ -27,7 +27,7 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#2 Easy way to hide Status Bar](https://twitter.com/szubyak/status/950687583222337537)
 
-Ever faced the problem that u can't hide status bar because of 'prefersStatusBarHidden' is get-only? The simplest solution is to 'override' it 🧐👨‍💻
+Ever faced the problem that u can't hide status bar because of `prefersStatusBarHidden` is `get-only`? The simplest solution is to `override` it 🧐👨‍💻
 
 ```swift
 let vc = UIViewController()
@@ -53,6 +53,15 @@ for (n, c) in "Swift".enumerated() {
     print("\(n): \(c)")
 }
 ```
+Result:
+
+```
+0: S
+1: w
+2: i
+3: f
+4: t
+```
 Also be careful with this tricky thing, `enumerated` on collection will not provide actual indices, but monotonically increasing integer, which happens to be the same as the index for Array but not for anything else, especially slices.
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
@@ -66,11 +75,11 @@ Functions `min` and `max` could be also combinations of  `sorted.first` and `sor
 ```swift
 let colors = ["red", "blue", "black", "white"]
 
-let min = colors.min()
-let first = colors.sorted().first
+let min = colors.min() // black
+let first = colors.sorted().first // black
 
-let max = colors.max()
-let last = colors.sorted().last
+let max = colors.max() // white
+let last = colors.sorted().last // white
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
@@ -99,7 +108,20 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
+## [#8 `forEach` and `map` execution order difference](https://twitter.com/szubyak/status/956538549444186112)
 
+Execution order is interesting difference between `forEach` and `map`: `forEach` is guaranteed to go through array elements in its sequence, while `map` is free to go in any order.
 
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
+## [#9 Change type of items in array](https://twitter.com/szubyak/status/956544356370059265)
+
+Two ways of changing type of items in array and obvious difference between them 🧐👨‍💻
+
+```swift
+let numbers = ["1", "2", "3", "4", "notInt"]
+let mapNumbers = numbers.map { Int($0) }  // [Optional(1), Optional(2), Optional(3), Optional(4), nil]
+let flatNumbers = numbers.flatMap { Int($0) } // [1, 2, 3, 4]
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
