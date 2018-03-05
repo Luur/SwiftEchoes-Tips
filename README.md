@@ -173,3 +173,13 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 Unit testing shouldn’t have any side effects. While running tests, Xcode firstly launches app and thus having the side effect of executing any code we may have in our App Delegate and initial View Controller. Fake AppDelegate in your `main.swift` to prevent it.
 
 You can find `main.swift` file [here](../master/Sources/11/main.swift)
+
+## [#12 Semicolons in Swift](https://twitter.com/szubyak/status/963144748004454400)
+
+Do you need semicolons in Swift ? Short answer is NO, but you can use them and it will give you interesting opportunity. Semicolons enable you to join related components into a single line.
+
+```swift
+func sum(a: Int, b: Int) -> Int {
+    let sum = a + b; return sum
+}
+```
