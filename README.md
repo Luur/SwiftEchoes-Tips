@@ -17,6 +17,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#11 Fake AppDelegate](https://github.com/Luur/SwiftTips#11-fake-appdelegate)<br />
 [#12 Semicolons in Swift](https://github.com/Luur/SwiftTips#12-semicolons-in-swift)<br />
 [#13 Group objects by property](https://github.com/Luur/SwiftTips#13-group-objects-by-property)<br />
+[#14 Transparent/Opaque Navigation Bar](https://github.com/Luur/SwiftTips#14-transparentopaque-navigation-bar)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -252,4 +253,21 @@ Result:
 
 Also in-box [alternative](https://developer.apple.com/documentation/swift/dictionary/2919592-init)
 
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#14 Transparent/Opaque Navigation Bar](https://twitter.com/szubyak/status/970962096245628929)
+Scene with `UIImageView` on top looks stylish if navigation bar is transparent.
+Easy way how to make navigation bar transparent or opaque.
+
+```swift
+func transparentNavigationBar() {
+    self.setBackgroundImage(UIImage(), for: .default)
+    self.shadowImage = UIImage()
+}
+
+func opaqueNavigationBar() {
+    self.shadowImage = nil
+    self.setBackgroundImage(nil, for: .default)
+}
+```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
