@@ -18,6 +18,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#12 Semicolons in Swift](https://github.com/Luur/SwiftTips#12-semicolons-in-swift)<br />
 [#13 Group objects by property](https://github.com/Luur/SwiftTips#13-group-objects-by-property)<br />
 [#14 Transparent/Opaque Navigation Bar](https://github.com/Luur/SwiftTips#14-transparentopaque-navigation-bar)<br />
+[#15 Split array by chunks of given size](https://github.com/Luur/SwiftTips#15-split-array-by-chunks-of-given-size)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -268,6 +269,22 @@ func transparentNavigationBar() {
 func opaqueNavigationBar() {
     self.shadowImage = nil
     self.setBackgroundImage(nil, for: .default)
+}
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#15 Split array by chunks of given size](https://twitter.com/szubyak/status/971351860820037632)
+
+Great extension to split array by chunks of given size
+
+```swift
+extension Array {
+    func chunk(_ chunkSize: Int) -> [[Element]] {
+        return stride(from: 0, to: self.count, by: chunkSize).map({ (startIndex) -> [Element] in
+            let endIndex = (startIndex.advanced(by: chunkSize) > self.count) ? self.count-startIndex : chunkSize
+            return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
+        })
+    }
 }
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
