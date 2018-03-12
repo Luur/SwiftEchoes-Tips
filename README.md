@@ -19,6 +19,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#13 Group objects by property](https://github.com/Luur/SwiftTips#13-group-objects-by-property)<br />
 [#14 Transparent/Opaque Navigation Bar](https://github.com/Luur/SwiftTips#14-transparentopaque-navigation-bar)<br />
 [#15 Split array by chunks of given size](https://github.com/Luur/SwiftTips#15-split-array-by-chunks-of-given-size)<br />
+[#16 Get next element of array](https://github.com/Luur/SwiftTips#16-get-next-element-of-array)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -284,6 +285,22 @@ extension Array {
             let endIndex = (startIndex.advanced(by: chunkSize) > self.count) ? self.count-startIndex : chunkSize
             return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
         })
+    }
+}
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#16 Get next element of array](https://twitter.com/szubyak/status/973146709030207489)
+
+Easy way how to get next element of array
+
+```swift
+extension Array where Element: Hashable {
+    func after(item: Element) -> Element? {
+        if let index = self.index(of: item), index + 1 < self.count {
+            return self[index + 1]
+        }
+        return nil
     }
 }
 ```
