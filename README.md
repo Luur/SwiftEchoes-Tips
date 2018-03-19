@@ -21,6 +21,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#15 Split array by chunks of given size](https://github.com/Luur/SwiftTips#15-split-array-by-chunks-of-given-size)<br />
 [#16 Get next element of array](https://github.com/Luur/SwiftTips#16-get-next-element-of-array)<br />
 [#17 Apply gradient to Navigation Bar](https://github.com/Luur/SwiftTips#17-apply-gradient-to-navigation-bar)<br />
+[#18 Common elements in two arraysr](https://github.com/Luur/SwiftTips#18-common-elements-in-two-arrays)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -341,3 +342,16 @@ extension UINavigationBar {
     }
 }
 ```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#18 Common elements in two arrays](https://twitter.com/szubyak/status/975736596661178369)
+
+I'm not huge fan of custom operators 😐 because they are intuitively obvious only to their authors, but I've created one which gives you opportunity to get common elements in two arrays whos elements implement `Equatable` protocol 🔨🧐💻
+
+```swift
+infix operator &
+func  &<T : Equatable>(lhs: [T], rhs: [T]) -> [T] {
+    return lhs.filter { rhs.contains($0) }
+}
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
