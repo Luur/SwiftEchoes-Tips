@@ -22,6 +22,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#16 Get next element of array](https://github.com/Luur/SwiftTips#16-get-next-element-of-array)<br />
 [#17 Apply gradient to Navigation Bar](https://github.com/Luur/SwiftTips#17-apply-gradient-to-navigation-bar)<br />
 [#18 Common elements in two arraysr](https://github.com/Luur/SwiftTips#18-common-elements-in-two-arrays)<br />
+[#19 Left/rigth text offset inside `UITextField`](https://github.com/Luur/SwiftTips#19-leftrigth-text-offset-inside-uitextfield)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -355,3 +356,37 @@ func  &<T : Equatable>(lhs: [T], rhs: [T]) -> [T] {
 }
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#19 Left/rigth text offset inside `UITextField`](https://twitter.com/szubyak/status/976547738908323840)
+
+Clear way of adding left\right text offset inside `UItextField` 🔨🧐💻  Also, because of `@IBInspectable` it could be easily editable in Interface Builder’s inspector panel.
+
+```swift
+@IBDesignable
+extension UITextField {
+
+    @IBInspectable var leftPaddingWidth: CGFloat {
+        get {
+            return leftView!.frame.size.width
+        }
+        set {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: newValue, height: frame.size.height))
+            leftView = paddingView
+            leftViewMode = .always
+        }
+    }
+
+    @IBInspectable var rigthPaddingWidth: CGFloat {
+        get {
+            return rightView!.frame.size.width
+        }
+        set {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: newValue, height: frame.size.height))
+            rightView = paddingView
+            rightViewMode = .always
+        }
+    }
+}
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
