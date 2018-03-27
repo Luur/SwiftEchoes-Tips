@@ -23,6 +23,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#17 Apply gradient to Navigation Bar](https://github.com/Luur/SwiftTips#17-apply-gradient-to-navigation-bar)<br />
 [#18 Common elements in two arraysr](https://github.com/Luur/SwiftTips#18-common-elements-in-two-arrays)<br />
 [#19 Left/rigth text offset inside `UITextField`](https://github.com/Luur/SwiftTips#19-leftrigth-text-offset-inside-uitextfield)<br />
+[#20 How to detect that user stop typing](https://github.com/Luur/SwiftTips#20-how-to-detect-that-user-stop-typing)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -385,6 +386,40 @@ extension UITextField {
             rightView = paddingView
             rightViewMode = .always
         }
+    }
+}
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#20 How to detect that user stop typing](https://twitter.com/szubyak/status/978659051893555201)
+
+Painless way ( NO to timers from now ⛔️ ) how to detect that user stop typing text in text field ⌨️ Could be usefull for lifetime search 🔍
+
+```swift
+class TestViewController: UIViewController {
+
+    @objc func searchBarDidEndTyping(_ textField: UISearchBar) {
+        print("User finsihed typing text in search bar")
+    }
+
+    @objc func textFieldDidEndTyping(_ textField: UITextField) {
+        print("User finished typing text in text field")
+    }
+}
+
+extension TestViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(searchBarDidEndTyping), object: searchBar)
+        self.perform(#selector(searchBarDidEndTyping), with: searchBar, afterDelay: 0.5)
+        return true
+    }
+}
+
+extension TestViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(textFieldDidEndTyping), object: textField)
+        self.perform(#selector(textFieldDidEndTyping), with: textField, afterDelay: 0.5)
+        return true
     }
 }
 ```
