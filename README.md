@@ -24,6 +24,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#18 Common elements in two arraysr](https://github.com/Luur/SwiftTips#18-common-elements-in-two-arrays)<br />
 [#19 Left/rigth text offset inside `UITextField`](https://github.com/Luur/SwiftTips#19-leftrigth-text-offset-inside-uitextfield)<br />
 [#20 How to detect that user stop typing](https://github.com/Luur/SwiftTips#20-how-to-detect-that-user-stop-typing)<br />
+[#21 Comparing tuples](https://github.com/Luur/SwiftTips#21-comparing-tuples)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -425,3 +426,19 @@ extension TestViewController: UITextFieldDelegate {
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
+## [#21 Comparing tuples](https://twitter.com/szubyak/status/980119909387599873)
+
+I discovered strange behavior of tuples during comparing 🤪. Comparison cares only about types and ignores labels 😦. So result can be unexpected. Be careful ⚠️. 
+
+```swift
+let car = (model: "Tesla", producer: "USA")
+let company = (name: "Tesla", country: "USA")
+if car == company {
+    print("Equal")
+} else {
+    print("Not equal")
+}
+```
+Printed result will be: `Equal`
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
