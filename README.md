@@ -25,6 +25,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#19 Left/rigth text offset inside `UITextField`](https://github.com/Luur/SwiftTips#19-leftrigth-text-offset-inside-uitextfield)<br />
 [#20 How to detect that user stop typing](https://github.com/Luur/SwiftTips#20-how-to-detect-that-user-stop-typing)<br />
 [#21 Comparing tuples](https://github.com/Luur/SwiftTips#21-comparing-tuples)<br />
+[#22 Split `String` into words](https://github.com/Luur/SwiftTips#22-split-string-into-words)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -441,4 +442,20 @@ if car == company {
 ```
 Printed result will be: `Equal`
 
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#22 Split `String` into words](https://twitter.com/szubyak/status/981833649296498689)
+
+Default ways of splitting ✂️ `String` don't work perfect sometimes, because of punctuation characters and other "wreckers" 🐛. Here is extension for splitting ✂️ `String` into words 💻🧐👌.
+
+```swift
+extension String {
+    var words: [String] {
+        return components(separatedBy: .punctuationCharacters)
+            .joined()
+            .components(separatedBy: .whitespaces)
+            .filter{!$0.isEmpty}
+    }
+}
+```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
