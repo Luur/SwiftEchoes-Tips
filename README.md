@@ -26,6 +26,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#20 How to detect that user stop typing](https://github.com/Luur/SwiftTips#20-how-to-detect-that-user-stop-typing)<br />
 [#21 Comparing tuples](https://github.com/Luur/SwiftTips#21-comparing-tuples)<br />
 [#22 Split `String` into words](https://github.com/Luur/SwiftTips#22-split-string-into-words)<br />
+[#23 Observe MOC changes](https://github.com/Luur/SwiftTips#23-observe-moc-changes)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -457,5 +458,38 @@ extension String {
             .filter{!$0.isEmpty}
     }
 }
+```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#23 Observe MOC changes](https://twitter.com/szubyak/status/983647253234626560)<br />
+
+Next code snippet 📃 I use to keep eye on changes that take place in the managed object context. Useful thing to know what's going on, what was added, updated ( what specific values were changed ) or deleted 📥📝📤
+
+```swift
+func changeNotification(_ notification: Notification) {
+    guard let userInfo = notification.userInfo else { return }
+
+    if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>, inserts.count > 0 {
+        print("--- INSERTS ---")
+        print(inserts)
+        print("+++++++++++++++")
+    }
+
+    if let updates = userInfo[NSUpdatedObjectsKey] as? Set<NSManagedObject>, updates.count > 0 {
+        print("--- UPDATES ---")
+        for update in updates {
+            print(update.changedValues())
+        }
+        print("+++++++++++++++")
+    }
+
+    if let deletes = userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject>, deletes.count > 0 {
+        print("--- DELETES ---")
+        print(deletes)
+        print("+++++++++++++++")
+    }
+}
+
+NotificationCenter.default.addObserver(self, selector: #selector(self.changeNotification(_:)), name: .NSManagedObjectContextObjectsDidChange, object: moc)
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
