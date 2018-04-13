@@ -88,9 +88,9 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#4 Combinations of pure functions](https://twitter.com/szubyak/status/953993641391017984)
 
-`flatMap` func is effectively the combination of using `map` and `joined` in a single call, in that order. It maps items in array A into array B using a func you provide, then joins the results using concatenation.
+`compactMap` func is effectively the combination of using `map` and `joined` in a single call, in that order. It maps items in array A into array B using a func you provide, then joins the results using concatenation.
 
-Functions `min` and `max` could be also combinations of  `sorted.first` and `sorted.last` in single call.
+Functions `min` and `max` could be also combinations of `sorted.first` and `sorted.last` in single call.
 
 ```swift
 let colors = ["red", "blue", "black", "white"]
@@ -141,7 +141,7 @@ Two ways of changing type of items in array and obvious difference between them 
 ```swift
 let numbers = ["1", "2", "3", "4", "notInt"]
 let mapNumbers = numbers.map { Int($0) }  // [Optional(1), Optional(2), Optional(3), Optional(4), nil]
-let flatNumbers = numbers.flatMap { Int($0) } // [1, 2, 3, 4]
+let compactNumbers = numbers.compactMap { Int($0) } // [1, 2, 3, 4]
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
