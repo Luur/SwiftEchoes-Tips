@@ -27,6 +27,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#21 Comparing tuples](https://github.com/Luur/SwiftTips#21-comparing-tuples)<br />
 [#22 Split `String` into words](https://github.com/Luur/SwiftTips#22-split-string-into-words)<br />
 [#23 Observe MOC changes](https://github.com/Luur/SwiftTips#23-observe-moc-changes)<br />
+[#24 Update `UIView` content with animation](https://github.com/Luur/SwiftTips#24-update-uiview-content-with-animation)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -461,7 +462,7 @@ extension String {
 ```
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
-## [#23 Observe MOC changes](https://twitter.com/szubyak/status/983647253234626560)<br />
+## [#23 Observe MOC changes](https://twitter.com/szubyak/status/983647253234626560)
 
 Next code snippet 📃 I use to keep eye on changes that take place in the managed object context. Useful thing to know what's going on, what was added, updated ( what specific values were changed ) or deleted 📥📝📤
 
@@ -492,4 +493,29 @@ func changeNotification(_ notification: Notification) {
 
 NotificationCenter.default.addObserver(self, selector: #selector(self.changeNotification(_:)), name: .NSManagedObjectContextObjectsDidChange, object: moc)
 ```
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#24 Update `UIView` content with animation](https://twitter.com/szubyak/status/985434399138304000)
+
+Really lightweight way 🎈 How to add content changing animation to UIView and it subclasses.
+
+```swift
+extension UIView {
+    func fadeTransition(_ duration: CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+        kCAMediaTimingFunctionEaseInEaseOut)
+        animation.type = kCATransitionFade
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransitionFade)
+    }
+}
+```
+Just invoke 🧙‍♂️ `fadeTransition(_ duration: CFTimeInterval)` by your view before you will apply a change.
+
+```swift
+label.fadeTransition(1)
+label.text = "Updated test content with animation"
+```
+
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
