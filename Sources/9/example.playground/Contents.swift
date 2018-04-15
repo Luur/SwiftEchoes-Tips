@@ -4,6 +4,6 @@ import UIKit
 
 let numbers = ["1", "2", "3", "4", "notInt"]
 let mapNumbers = numbers.map { Int($0) }
-let flatNumbers = numbers.flatMap { Int($0) }
+let compactNumbers = numbers.compactMap { Int($0) }
 
-print("\(mapNumbers) \n \(flatNumbers)")
+print("\(mapNumbers) \n \(compactNumbers)")
