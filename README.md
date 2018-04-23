@@ -28,6 +28,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#22 Split `String` into words](https://github.com/Luur/SwiftTips#22-split-string-into-words)<br />
 [#23 Observe MOC changes](https://github.com/Luur/SwiftTips#23-observe-moc-changes)<br />
 [#24 Update `UIView` content with animation](https://github.com/Luur/SwiftTips#24-update-uiview-content-with-animation)<br />
+[#25 Debugging: Log functions](https://github.com/Luur/SwiftTips#25-debugging-log-functions)<br />
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -519,3 +520,29 @@ label.text = "Updated test content with animation"
 ```
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#25 Debugging: Log functions](https://twitter.com/szubyak/status/988328809681342464) 
+
+Debuging 👨‍🔧 is one of the most importent aspects of programing👨‍💻. It should be in your skillbox anyway. It contains  log functions, asserts, breakpoints and view debuging.
+Let's observe everyone of them just one by one. And here are log functions in the crosshairs 🔍.
+
+We know `print()` as a variadic function. Function that accepts any number of parameters. 
+
+```swift
+print("one", "two", "three", "four") //one two three four
+```
+
+But it's variadic nature becomes much more useful when you use `separator` and `terminator`, its optional extra parameters. `separator` gives you opportunity to provide a string that should be placed between every item. It's "space" by default.
+
+```swift
+print("one", "two", "three", "four", separator: "-") //one-two-three-four
+```
+
+Meanwhile `terminator` is what should be placed after the last item.
+ It’s `\n` by default, which means "line break".
+ 
+ ```swift
+ print("one", "two", "three", "four", terminator: " five") //one two three four five
+ ```
+ 
+ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
