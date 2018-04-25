@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
 [#25 Debugging: Log functions](https://github.com/Luur/SwiftTips#25-debugging-log-functions)<br />
 [#24 Update `UIView` content with animation](https://github.com/Luur/SwiftTips#24-update-uiview-content-with-animation)<br />
 [#23 Observe MOC changes](https://github.com/Luur/SwiftTips#23-observe-moc-changes)<br />
@@ -29,6 +30,39 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#26 Debugging: Asserts](https://twitter.com/szubyak/status/989153864472547328)
+
+`assert()` is debug-only check that will force your app to crash if specific condition is false. 
+
+```swift
+assert(4 == 4, "Maths error") //OK
+assert(3 == 2, "Maths error") //Crash
+```
+As you can see `assert()` takes two parameters: 
+* Something to check.
+* Message to print out of the check fails. 
+    
+If the check evaluates to false, your app will be forced to crash because you know it's not in a safe state, and you'll see the error message in the debug console.
+If you don’t have a condition to evaluate, or don’t need to evaluate one, you can use `assertionFailure()` function.
+
+`precondition()` is not debug-only check. It will crash your app even in release mode.
+
+```swift
+precondition(4 == 4, "Maths error") //OK
+precondition(3 == 2, "Maths error") //Crash
+```
+`preconditionFailure()` works the same as `assertionFailure()`. With the same difference as above, it works for release builds. 
+
+`fatalError()`, like `assertionFailure()` and `preconditionFailure()` works for all optimisation levels in all build configurations.
+
+```swift
+fatalError("ERROR")
+```
+
+More about asserts and optimisation levels you can find [here](https://agostini.tech/2017/10/01/assert-precondition-and-fatal-error-in-swift/)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#25 Debugging: Log functions](https://twitter.com/szubyak/status/988328809681342464) 
 
