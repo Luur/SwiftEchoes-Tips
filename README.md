@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
 [#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
 [#25 Debugging: Log functions](https://github.com/Luur/SwiftTips#25-debugging-log-functions)<br />
 [#24 Update `UIView` content with animation](https://github.com/Luur/SwiftTips#24-update-uiview-content-with-animation)<br />
@@ -30,6 +31,29 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#27 Debugging: Breakpoints](https://twitter.com/szubyak/status/989442320260108288)
+
+A `breakpoint` is a debugging tool that allows you to pause the execution of your program up to a certain moment. Creating `pause` points in your code can help you investigate your code.
+While your app is paused, light green arrow that shows your current execution position can be moved. Just click and drag it somewhere else to have execution pick up from there – although Xcode will warn you that it might have unexpected results, so tread carefully!
+
+Right-click on the breakpoint (the blue arrow marker) and choose Edit Breakpoint.
+
+![](../master/Sources/27/img1.png)
+
+In the popup that appears you can set the `condition`. Execution will now pause only when your condition is true. You can use conditional breakpoints to execute debugger commands automatically – the `Automatically continue` checkbox is perfect for making your program continue uninterrupted while breakpoints silently trigger actions.
+Also you can set `Ignore times before stoping` and actions like `Debuger command`, `Log message`, `Sound`, etc.
+
+![](../master/Sources/27/img2.png)
+
+Shortcuts:
+
+`F6`- Step Over.
+`Ctrl+Cmd+Y` - Continue (continue executing my program until you hit another breakpoint)
+
+In Xcode debug console you can use `po` to print what you need during pause.
+
+![](../master/Sources/27/img3.png)
 
 ## [#26 Debugging: Asserts](https://twitter.com/szubyak/status/989153864472547328)
 
