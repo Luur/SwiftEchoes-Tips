@@ -13,7 +13,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#21 Comparing tuples](https://github.com/Luur/SwiftTips#21-comparing-tuples)<br />
 [#20 How to detect that user stop typing](https://github.com/Luur/SwiftTips#20-how-to-detect-that-user-stop-typing)<br />
 [#19 Left/rigth text offset inside `UITextField`](https://github.com/Luur/SwiftTips#19-leftrigth-text-offset-inside-uitextfield)<br />
-[#18 Common elements in two arraysr](https://github.com/Luur/SwiftTips#18-common-elements-in-two-arrays)<br />
+[#18 Common elements in two arrays](https://github.com/Luur/SwiftTips#18-common-elements-in-two-arrays)<br />
 [#17 Apply gradient to Navigation Bar](https://github.com/Luur/SwiftTips#17-apply-gradient-to-navigation-bar)<br />
 [#16 Get next element of array](https://github.com/Luur/SwiftTips#16-get-next-element-of-array)<br />
 [#15 Split array by chunks of given size](https://github.com/Luur/SwiftTips#15-split-array-by-chunks-of-given-size)<br />
