@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#28 Error:Handling](https://github.com/Luur/SwiftTips#28-error-handling)<br />
 [#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
 [#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
 [#25 Debugging: Log functions](https://github.com/Luur/SwiftTips#25-debugging-log-functions)<br />
@@ -31,6 +32,9 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#28 Error: Handling]()
+Error Handling is a most important concept in Swift newer version. It's good to use try and catch block whereever you think there is a doubt of absolute reply. There are a lot of concepts behind Do-Try-Catch Block.
 
 ## [#27 Debugging: Breakpoints](https://twitter.com/szubyak/status/989442320260108288)
 
