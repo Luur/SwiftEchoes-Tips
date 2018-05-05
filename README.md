@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#28 Debugging: View Debugging](https://github.com/Luur/SwiftTips#28-debugging-view-debugging)<br />
 [#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
 [#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
 [#25 Debugging: Log functions](https://github.com/Luur/SwiftTips#25-debugging-log-functions)<br />
@@ -32,6 +33,24 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
+
+## [#28 Debugging: View Debugging](https://twitter.com/szubyak/status/992667725574045696)
+
+Using `View Debugging` you’re now able to inspect an entire view hierarchy visually – right from within Xcode, instead of printing frames to the console and trying to visualize layouts in your head.
+
+![](../master/Sources/28/img1.png)
+
+You can invoke the view debugger by choosing `View UI Hierarchy` from the process view options menu in the debug navigator, or by choosing `Debug` > `View Debugging` > `Capture View Hierarchy`.
+
+![](../master/Sources/28/img2.png)
+
+You'll see a 3D representation of your view, which means you can look behind the layers to see what else is there. The hierarchy automatically puts some depth between each of its views, so they appear to pop off the canvas as you rotate them.
+If you have a complicated view layout, `View Debugging` > `Show View Frames` option will draw lines around all your views so you can see exactly where they are.
+
+More about view debugging [here](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/debugging_with_xcode/chapters/special_debugging_workflows.html)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
 ## [#27 Debugging: Breakpoints](https://twitter.com/szubyak/status/989442320260108288)
 
 A `breakpoint` is a debugging tool that allows you to pause the execution of your program up to a certain moment. Creating `pause` points in your code can help you investigate your code.
@@ -54,6 +73,8 @@ Shortcuts:
 In Xcode debug console you can use `po` to print what you need during pause.
 
 ![](../master/Sources/27/img3.png)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#26 Debugging: Asserts](https://twitter.com/szubyak/status/989153864472547328)
 
