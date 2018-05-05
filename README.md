@@ -4,8 +4,9 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#30 `DispatchGroup` usage]()
-[#29 Remove duplicates]()
+[#31 Run, Playground, run!](https://github.com/Luur/SwiftTips#31-run-playground-run)<br /> 
+[#30 `DispatchGroup` usage](https://github.com/Luur/SwiftTips#30-dispatchgroup-usage)<br />
+[#29 Remove duplicates](https://github.com/Luur/SwiftTips#29-remove-duplicates)<br />
 [#28 Debugging: View Debugging](https://github.com/Luur/SwiftTips#28-debugging-view-debugging)<br />
 [#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
 [#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
@@ -34,6 +35,18 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#31 Run, Playground, run!]()
+
+Asynchronous work in Playground.
+
+Tell the playground it should continue running forever, otherwise it will terminate before the asynchronous work has time to hppen.
+
+```swift
+PlaygroundPage.current.needsIndefiniteExecution = true
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#30 `DispatchGroup` usage]()
 
@@ -66,9 +79,9 @@ Each call to `enter()` must be matched later on with a call to `leave()`, after 
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
-## [#29 Remove duplicates]()
+## [#29 Remove duplicates](https://twitter.com/szubyak/status/993399930457939968)
 
-Clear way to return the unique list of objects based on a given key. It has the advantage of not requiring the Hashable and being able to return an unique list based on any field or combination.
+Clear way 🛣️ to return the unique list of objects based on a given key 🔑. It has the advantage of not requiring the Hashable and being able to return an unique list based on any field or combination.
 
 ```swift
 extension Array {
