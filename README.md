@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#30 `DispatchGroup` usage]()
 [#29 Remove duplicates]()
 [#28 Debugging: View Debugging](https://github.com/Luur/SwiftTips#28-debugging-view-debugging)<br />
 [#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
@@ -34,6 +35,36 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
+## [#30 `DispatchGroup` usage]()
+
+Let’s say you’ve got several long running tasks to perform. After all of them have finished, you’d like to run some further logic. You could run each task in a sequential fashion, but that isn’t so efficient - you’d really like the former tasks to run concurrently. `DispatchGroup` enables you to do exactly this.
+
+```swift
+let dispatchGroup = DispatchGroup()
+
+for i in 1...5 {
+    dispatchGroup.enter()
+    Alamofire.request(url, parameters: params).responseJSON { response in
+        //work with response
+        dispatchGroup.leave() 
+    }
+}
+
+dispatchGroup.notify(queue: .main) {
+    print("All requests complete")
+}
+```
+
+In the above, all long running functions will perform concurrently, followed by the print statement, which will execute on the main thread. 
+
+Each call to `enter()` must be matched later on with a call to `leave()`, after which the group will call the closure provided to `notify()`. 
+
+`DispatchGroup` has a few other tricks:
+* Instead of `notify()`, we can call `wait()`. This blocks the current thread until the group’s tasks have completed.
+* A further option is `wait(timeout:)`. This blocks the current thread, but after the timeout specified, continues anyway. To create a timeout object of type `DispatchTime`, the syntax `.now() + 1` will create a timeout one second from now.
+* `wait(timeout:)` returns an enum that can be used to determine whether the group completed, or timed out.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#29 Remove duplicates]()
 
