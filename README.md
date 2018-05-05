@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#29 Remove duplicates]()
 [#28 Debugging: View Debugging](https://github.com/Luur/SwiftTips#28-debugging-view-debugging)<br />
 [#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
 [#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
@@ -33,6 +34,28 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
+
+## [#29 Remove duplicates]()
+
+Clear way to return the unique list of objects based on a given key. It has the advantage of not requiring the Hashable and being able to return an unique list based on any field or combination.
+
+```swift
+extension Array {
+    func unique<T:Hashable>(map: ((Element) -> (T)))  -> [Element] {
+        var set: Set<T> = []
+        var arrayOrdered: [Element] = []
+        for value in self {
+            if !set.contains(map(value)) {
+                set.insert(map(value))
+                arrayOrdered.append(value)
+            }   
+        }
+        return arrayOrdered
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#28 Debugging: View Debugging](https://twitter.com/szubyak/status/992667725574045696)
 
