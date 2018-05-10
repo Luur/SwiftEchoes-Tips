@@ -4,7 +4,11 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#28 Error:Handling](https://github.com/Luur/SwiftTips#28-error-handling)<br />
+[#32 Error:Handling](https://github.com/Luur/SwiftTips#28-error-handling)<br />
+[#31 Run, Playground, run!](https://github.com/Luur/SwiftTips#31-run-playground-run)<br /> 
+[#30 `DispatchGroup` usage](https://github.com/Luur/SwiftTips#30-dispatchgroup-usage)<br />
+[#29 Remove duplicates](https://github.com/Luur/SwiftTips#29-remove-duplicates)<br />
+[#28 Debugging: View Debugging](https://github.com/Luur/SwiftTips#28-debugging-view-debugging)<br />
 [#27 Debugging: Breakpoints](https://github.com/Luur/SwiftTips#27-debugging-breakpoints)<br />
 [#26 Debugging: Asserts](https://github.com/Luur/SwiftTips#26-debugging-asserts)<br />
 [#25 Debugging: Log functions](https://github.com/Luur/SwiftTips#25-debugging-log-functions)<br />
@@ -33,8 +37,90 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
-## [#28 Error: Handling]()
+## [#32 Error: Handling]()
 Error Handling is a most important concept in Swift newer version. It's good to use try and catch block whereever you think there is a doubt of absolute reply. There are a lot of concepts behind Do-Try-Catch Block.
+
+## [#31 Run, Playground, run!]()
+
+Asynchronous work in Playground.
+
+Tell the playground it should continue running forever, otherwise it will terminate before the asynchronous work has time to hppen.
+
+```swift
+PlaygroundPage.current.needsIndefiniteExecution = true
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#30 `DispatchGroup` usage]()
+
+Let’s say you’ve got several long running tasks to perform. After all of them have finished, you’d like to run some further logic. You could run each task in a sequential fashion, but that isn’t so efficient - you’d really like the former tasks to run concurrently. `DispatchGroup` enables you to do exactly this.
+
+```swift
+let dispatchGroup = DispatchGroup()
+
+for i in 1...5 {
+    dispatchGroup.enter()
+    Alamofire.request(url, parameters: params).responseJSON { response in
+        //work with response
+        dispatchGroup.leave() 
+    }
+}
+
+dispatchGroup.notify(queue: .main) {
+    print("All requests complete")
+}
+```
+
+In the above, all long running functions will perform concurrently, followed by the print statement, which will execute on the main thread. 
+
+Each call to `enter()` must be matched later on with a call to `leave()`, after which the group will call the closure provided to `notify()`. 
+
+`DispatchGroup` has a few other tricks:
+* Instead of `notify()`, we can call `wait()`. This blocks the current thread until the group’s tasks have completed.
+* A further option is `wait(timeout:)`. This blocks the current thread, but after the timeout specified, continues anyway. To create a timeout object of type `DispatchTime`, the syntax `.now() + 1` will create a timeout one second from now.
+* `wait(timeout:)` returns an enum that can be used to determine whether the group completed, or timed out.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#29 Remove duplicates](https://twitter.com/szubyak/status/993399930457939968)
+
+Clear way 🛣️ to return the unique list of objects based on a given key 🔑. It has the advantage of not requiring the Hashable and being able to return an unique list based on any field or combination.
+
+```swift
+extension Array {
+    func unique<T:Hashable>(map: ((Element) -> (T)))  -> [Element] {
+        var set: Set<T> = []
+        var arrayOrdered: [Element] = []
+        for value in self {
+            if !set.contains(map(value)) {
+                set.insert(map(value))
+                arrayOrdered.append(value)
+            }   
+        }
+        return arrayOrdered
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+
+## [#28 Debugging: View Debugging](https://twitter.com/szubyak/status/992667725574045696)
+
+Using `View Debugging` you’re now able to inspect an entire view hierarchy visually – right from within Xcode, instead of printing frames to the console and trying to visualize layouts in your head.
+
+![](../master/Sources/28/img1.png)
+
+You can invoke the view debugger by choosing `View UI Hierarchy` from the process view options menu in the debug navigator, or by choosing `Debug` > `View Debugging` > `Capture View Hierarchy`.
+
+![](../master/Sources/28/img2.png)
+
+You'll see a 3D representation of your view, which means you can look behind the layers to see what else is there. The hierarchy automatically puts some depth between each of its views, so they appear to pop off the canvas as you rotate them.
+If you have a complicated view layout, `View Debugging` > `Show View Frames` option will draw lines around all your views so you can see exactly where they are.
+
+More about view debugging [here](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/debugging_with_xcode/chapters/special_debugging_workflows.html)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#27 Debugging: Breakpoints](https://twitter.com/szubyak/status/989442320260108288)
 
@@ -58,6 +144,8 @@ Shortcuts:
 In Xcode debug console you can use `po` to print what you need during pause.
 
 ![](../master/Sources/27/img3.png)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ## [#26 Debugging: Asserts](https://twitter.com/szubyak/status/989153864472547328)
 
