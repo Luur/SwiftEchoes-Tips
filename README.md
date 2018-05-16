@@ -4,6 +4,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#32 Delegate naming]()<br /> 
+[#32 Delegate naming](https://github.com/Luur/SwiftTips#32-delegate-naming)<br /> 
 [#31 Run, Playground, run!](https://github.com/Luur/SwiftTips#31-run-playground-run)<br /> 
 [#30 `DispatchGroup` usage](https://github.com/Luur/SwiftTips#30-dispatchgroup-usage)<br />
 [#29 Remove duplicates](https://github.com/Luur/SwiftTips#29-remove-duplicates)<br />
@@ -35,6 +37,19 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#32 Delegate naming]()
+## [#32 Delegate naming](https://twitter.com/szubyak/status/997063113659813890)
+
+When creating custom delegate methods take into consideration the following list items:
+* You can give the name to  your delegate property `delegate`, if it is just one of them, or put `delegate` at the end, when it is more than one.  Here is the example, `WKWebView` has `uiDelegate` and `navigationDelegate` properties that can point to two different objects.  
+* You should use Apple’s standard approach to avoid verb conjugation. It says that many of your method names will use `will`, `did`, and `should`.
+* Start the name by identifying the class of the object that’s sending the message `func tableView(_ tableView: UITableView,...`. It helps in situations where there is more than one object that can send a message .
+
+As a result, Apple delegates have a very specific naming convention:
+```swift
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+```
 
 ## [#31 Run, Playground, run!]()
 
