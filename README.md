@@ -4,7 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#32 Delegate naming]()<br /> 
+[#33 Remove object from array](https://github.com/Luur/SwiftTips#33-remove-object-from-array)<br /> 
 [#32 Delegate naming](https://github.com/Luur/SwiftTips#32-delegate-naming)<br /> 
 [#31 Run, Playground, run!](https://github.com/Luur/SwiftTips#31-run-playground-run)<br /> 
 [#30 `DispatchGroup` usage](https://github.com/Luur/SwiftTips#30-dispatchgroup-usage)<br />
@@ -38,7 +38,22 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
-## [#32 Delegate naming]()
+## [#33 Remove object from array](https://twitter.com/szubyak/status/997471185008021505)
+
+Super lightweight extension 🎈. How to remove particular object from array. Remove first collection element that is equal to the given `object`.
+
+```swift
+extension Array where Element: Equatable {
+    mutating func remove(_ object: Element) {
+        if let index = index(of: object) {
+            remove(at: index)
+        }
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+
 ## [#32 Delegate naming](https://twitter.com/szubyak/status/997063113659813890)
 
 When creating custom delegate methods take into consideration the following list items:
@@ -50,6 +65,8 @@ As a result, Apple delegates have a very specific naming convention:
 ```swift
 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 ```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#31 Run, Playground, run!]()
 
