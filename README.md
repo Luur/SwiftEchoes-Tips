@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#34 Sort array of objects with multiple optional criteria](https://github.com/Luur/SwiftTips#34-sort-array-of-objects-with-multiple-optional-criteria)<br /> 
 [#33 Remove object from array](https://github.com/Luur/SwiftTips#33-remove-object-from-array)<br /> 
 [#32 Delegate naming](https://github.com/Luur/SwiftTips#32-delegate-naming)<br /> 
 [#31 Run, Playground, run!](https://github.com/Luur/SwiftTips#31-run-playground-run)<br /> 
@@ -37,6 +38,39 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#34 Sort array of objects with multiple optional criteria](https://twitter.com/szubyak/status/999579540602216448)
+
+Few days ago I faced a sorting task. I needed to sort array of object by more then one criteria that is also optional. My object was `Place` with `rating` and `distance` properties. `rating` was main criteria for sorting and `distance` was secondary. So, here is my workouts.
+
+```swift
+
+struct Place {
+    var rating: Int?
+    var distance: Double?
+}
+
+func sortPlacesByRatingAndDistance(_ places: [Place]) -> [Place] {
+    return places.sorted { t1, t2 in
+        if t1.rating == t2.rating {
+            guard let distance1 = t1.distance, let distance2 = t2.distance else {
+                return false
+            }
+            return distance1 < distance2
+        }
+        guard let rating1 = t1.rating, let rating2 = t2.rating else {
+            return false
+        }
+        return rating1 > rating2
+    }
+}
+
+let places = [Place(rating: 3, distance: 127), Place(rating: 4, distance: 423), Place(rating: 5, distance: nil), Place(rating: nil, distance: 100), Place(rating: nil, distance: 34), Place(rating: nil, distance: nil)]
+
+let sortedPlaces = sortPlacesByRatingAndDistance(places) // [{rating 5, nil}, {rating 4, distance 423}, {rating 3, distance 127}, {nil, distance 34}, {nil, distance 100}, {nil, nil}]
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#33 Remove object from array](https://twitter.com/szubyak/status/997471185008021505)
 
