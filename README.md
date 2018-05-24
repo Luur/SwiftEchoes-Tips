@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#35 Prepare Alamofire standalone functions to unit-testing](https://github.com/Luur/SwiftTips#35-prepare-alamofire-standalone-functions-to-unit-testing)<br />
 [#34 Sort array of objects with multiple optional criteria](https://github.com/Luur/SwiftTips#34-sort-array-of-objects-with-multiple-optional-criteria)<br /> 
 [#33 Remove object from array](https://github.com/Luur/SwiftTips#33-remove-object-from-array)<br /> 
 [#32 Delegate naming](https://github.com/Luur/SwiftTips#32-delegate-naming)<br /> 
@@ -38,6 +39,89 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#35 Prepare Alamofire standalone functions to unit-testing]()
+
+Methods are functions associated with a type. Mock the type, and you can intercept the method. In Swift, we prefer to do this with protocols. But a standalone function lives on its own, without any associated data. In other words, it has no `self`.
+During unit-testing we want to intercept these calls, for two main reasons:
+* To spy on the arguments a function receives.
+* To stub any return values.
+
+In popular networking 3party library *Almofire* all `request`, `upload` or `download` functions implemented as standalone functions. So, we have dificulties with intercepting during unit testing. We can't mock associated type, because there is no type. Also `responseJSON` function is implemented in extension, so we can't make any changes or override it.
+
+I defined a new class with 2 methods (`request` and `responseJSON`) with the same method signature as Alamofire's `request` and `responseJSON` methods. I called the Alamofire version of  these methods inside. And then used this class as a dependency in my `sut`.
+
+```swift
+import Alamofire
+
+class AlamofireWrapper {
+    @discardableResult
+    public func request(_ url: URLConvertible, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil) -> DataRequest {
+        return Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+    }
+
+    public func responseJSON(request: DataRequest, queue: DispatchQueue? = nil, options: JSONSerialization.ReadingOptions = .allowFragments, completionHandler: @escaping (DataResponse<Any>) -> Void) {
+        request.responseJSON(queue: queue, options: options, completionHandler: completionHandler)
+    }
+}
+```
+
+My request part starts looking like this: 
+
+```swift
+var alamofireWrapper = AlamofireWrapper()
+
+let request = alamofireWrapper.request(url, parameters: params, encoding: URLEncoding(destination: .queryString))
+alamofireWrapper.responseJSON(request: request) { response in
+    if response.result.isSuccess {
+        success(response.result.value)
+    } else if let error = response.result.error {
+        failure(error)
+    }
+}
+```
+
+And here is my test double finaly: 
+
+```swift
+// MARK: - Test doubles
+
+class AlamofireWrapperSpy: AlamofireWrapper {
+
+    enum RequestStatus {
+        case success
+        case failure
+    }
+
+    var status: RequestStatus = .success
+
+    // MARK: Method call expectations
+
+    var requestCalled = false
+    var responseJSONCalled = false
+
+    // MARK: Spied methods
+
+    override func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?) -> DataRequest {
+        requestCalled = true
+        return  SessionManager.default.request("dummy_url")
+    }
+
+    override func responseJSON(request: DataRequest, queue: DispatchQueue?, options: JSONSerialization.ReadingOptions, completionHandler: @escaping (DataResponse<Any>) -> Void) {
+        responseJSONCalled = true
+        switch status {
+        case .success:
+            let value = ["result": "best_response_ever"]
+            completionHandler(DataResponse(request: nil, response: nil, data: nil, result: Result.success(value)))
+        case .failure:
+            let error = NSError(domain: "", code: 500, userInfo: nil)
+            completionHandler(DataResponse(request: nil, response: nil, data: nil, result: Result.failure(error)))
+        }
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#34 Sort array of objects with multiple optional criteria](https://twitter.com/szubyak/status/999579540602216448)
 
