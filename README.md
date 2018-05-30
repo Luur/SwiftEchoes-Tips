@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#36 Property observers, getter/setter and lazy are mutually exclusive](https://github.com/Luur/SwiftTips#36-property-observers-gettersetter-and-lazy-are-mutually-exclusive)<br />
 [#35 Prepare Alamofire standalone functions to unit-testing](https://github.com/Luur/SwiftTips#35-prepare-alamofire-standalone-functions-to-unit-testing)<br />
 [#34 Sort array of objects with multiple optional criteria](https://github.com/Luur/SwiftTips#34-sort-array-of-objects-with-multiple-optional-criteria)<br /> 
 [#33 Remove object from array](https://github.com/Luur/SwiftTips#33-remove-object-from-array)<br /> 
@@ -39,6 +40,14 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#36 Property observers, getter/setter and lazy are mutually exclusive](https://twitter.com/szubyak/status/1001754575857168384)<br />
+
+Little thing that surprisingly became a discovery for me, because it's rare case in practice, so I'm not ashamed of it 🤣. `Property observers`, `getter/setter` and `lazy` cant be used together, they are mutually exclusive. So you should choose what pattern makes most profit to you in particaulr situation.
+
+![](../master/Sources/36/img.png)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#35 Prepare Alamofire standalone functions to unit-testing]()
 
