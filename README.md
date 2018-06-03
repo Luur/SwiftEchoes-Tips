@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#37 Protocols: Naming](https://github.com/Luur/SwiftTips#37-protocols-naming)<br />
 [#36 Property observers, getter/setter and lazy are mutually exclusive](https://github.com/Luur/SwiftTips#36-property-observers-gettersetter-and-lazy-are-mutually-exclusive)<br />
 [#35 Prepare Alamofire standalone functions to unit-testing](https://github.com/Luur/SwiftTips#35-prepare-alamofire-standalone-functions-to-unit-testing)<br />
 [#34 Sort array of objects with multiple optional criteria](https://github.com/Luur/SwiftTips#34-sort-array-of-objects-with-multiple-optional-criteria)<br /> 
@@ -40,6 +41,16 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#37 Protocols: Naming](https://twitter.com/szubyak/status/1003204523006021632)<br />
+
+If we are talking about naming the protocol itself:
+* Protocols that describe *what something* is should read as nouns (e.g. `Collection`).
+* Protocols that describe a *capability* should be named using the suffixes `able`, `ible`, or `ing` (e.g. `Equatable`, `ProgressReporting`).
+
+Briefly talking about methods names inside protocol, you can use whatever names you want. But, if your protocol is created to represent delegates please look:  [#32 Delegate naming](https://github.com/Luur/SwiftTips#32-delegate-naming)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#36 Property observers, getter/setter and lazy are mutually exclusive](https://twitter.com/szubyak/status/1001754575857168384)<br />
 
