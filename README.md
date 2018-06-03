@@ -4,7 +4,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#38 Protocols: Optional methods]()<br />
+[#39 Protocols: Inheritance and composition]()<br />
+[#38 Protocols: Optional methods](https://github.com/Luur/SwiftTips#38-protocols-optional-methods)<br />
 [#37 Protocols: Naming](https://github.com/Luur/SwiftTips#37-protocols-naming)<br />
 [#36 Property observers, getter/setter and lazy are mutually exclusive](https://github.com/Luur/SwiftTips#36-property-observers-gettersetter-and-lazy-are-mutually-exclusive)<br />
 [#35 Prepare Alamofire standalone functions to unit-testing](https://github.com/Luur/SwiftTips#35-prepare-alamofire-standalone-functions-to-unit-testing)<br />
@@ -42,6 +43,24 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#39 Protocols: Inheritance and composition]()<br />
+
+In previous tip you can observe how to split your protocol to smaller pieces. Here I will show you how to combine your protocols to make bigger one using inheritance and composition. To merge protocols together  use `&` for protocol composition.
+
+```swift
+typealias Codable = Decodable & Encodable
+```
+
+You can also use protocol inheritance to build larger protocols.
+
+```swift
+protocol CarEngineStatusDelegate { }
+protocol CarMovingStatusDelegate { }
+protocol CarDelegate: CarMovingStatusDelegate, CarEngineStatusDelegate { }
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#38 Protocols: Optional methods]()<br />
 
