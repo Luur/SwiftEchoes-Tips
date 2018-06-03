@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#38 Protocols: Optional methods]()<br />
 [#37 Protocols: Naming](https://github.com/Luur/SwiftTips#37-protocols-naming)<br />
 [#36 Property observers, getter/setter and lazy are mutually exclusive](https://github.com/Luur/SwiftTips#36-property-observers-gettersetter-and-lazy-are-mutually-exclusive)<br />
 [#35 Prepare Alamofire standalone functions to unit-testing](https://github.com/Luur/SwiftTips#35-prepare-alamofire-standalone-functions-to-unit-testing)<br />
@@ -41,6 +42,58 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#38 Protocols: Optional methods]()<br />
+
+If you implement a protocol in Swift you must implement all its requirements. Optional methods are not allowed.
+
+Example:
+
+```swift
+protocol CarDelegate {
+    func engineDidStart()
+    func carShouldStartMoving() -> Bool
+    func carDidStartMoving()
+    func engineWillStop()
+    func engineDidStop()
+}
+```
+
+But there are a few tricks how to make some methods to be optionals:
+* You can split them in two protocols, and adopt only needed one.
+```swift
+protocol CarMovingStatusDelegate {
+    func carShouldStartMoving() -> Bool
+    func carDidStartMoving()
+}
+
+protocol CarEngineStatusDelegate {
+    func engineDidStart()
+    func engineWillStop()
+    func engineDidStop()
+}
+```
+* Use the `@objc` attribute on a Swift protocol to receive opportunity to mark methods as being optional, but you may no longer use Swift structs and enums with that protocol, and you may no longer use protocol extensions.
+```swift
+@objc protocol CarDelegate {
+    @objc optional func engineDidStart()
+    func carShouldStartMoving() -> Bool
+    func carDidStartMoving()
+    @objc optional func engineWillStop()
+    @objc optional func engineDidStop()
+}
+```
+
+Here is the optional method usage:
+
+```swift
+delegate?.engineWillStop?()
+```
+
+The `delegate` property is optional because there might not be a delegate assigned. And in the `CarDelegate` protocol we made `engineWillStop()` an optional requirement, so even if a delegate is present it might not implement that method.
+As a result, we need to use optional chaining.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#37 Protocols: Naming](https://twitter.com/szubyak/status/1003204523006021632)<br />
 
