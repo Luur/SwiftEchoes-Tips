@@ -4,7 +4,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#39 Protocols: Inheritance and composition]()<br />
+[#40 Protocols: Class-only](https://github.com/Luur/SwiftTips#40-protocols-class-only)<br />
+[#39 Protocols: Inheritance and composition](https://github.com/Luur/SwiftTips#39-protocols-inheritance-and-composition)<br />
 [#38 Protocols: Optional methods](https://github.com/Luur/SwiftTips#38-protocols-optional-methods)<br />
 [#37 Protocols: Naming](https://github.com/Luur/SwiftTips#37-protocols-naming)<br />
 [#36 Property observers, getter/setter and lazy are mutually exclusive](https://github.com/Luur/SwiftTips#36-property-observers-gettersetter-and-lazy-are-mutually-exclusive)<br />
@@ -43,6 +44,17 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#40 Protocols: Class-only]()<br />
+
+One more thing left to say about protocols. Sometimes protocols should be adopted only by classes. To achieve this behaviour you should define you protocol with `class` keyword or by inheriting from `AnyObject`. This is commonly happens because you have a `delegate` property that needs to use `weak` storage to avoid the risk of a `strong reference cycle` (formerly known as a `retain cycle`).
+
+```swift
+weak var delegate: CarDelegate?
+```
+The `weak` keyword can't be used with structs and enums, because they are value types.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#39 Protocols: Inheritance and composition]()<br />
 
