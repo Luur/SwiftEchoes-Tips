@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#46 Generic basics]()<br />
 [#45 UserDefaults during testing](https://github.com/Luur/SwiftTips#45-userdefaults-during-testing)<br />
 [#44 Additional Info to #38 Protocols: Optional methods](https://github.com/Luur/SwiftTips#44-additional-info-to-38-protocols-optional-methods)<br />
 [#43 Responsible view controller for particular view](https://github.com/Luur/SwiftTips#43-responsible-view-controller-for-particular-view)<br />
@@ -49,6 +50,32 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#46 Generics: Basics]()
+
+Generics are one of the most powerful features of Swift. It gives you opportinity to write flexible, reusable functions. Types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted way.
+
+At first, here is nongeneric function which swaps two `Int` values:
+```swift
+func swapTwoInts(_ a: inout Int, _ b: inout Int) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+```
+As you can see, this func is useful but a bit limited, because you can swap only `Int` values. If you want to swap two `String` values, or two `Double` values, you have to write more functions.
+
+Generic functions can work with any type. Here’s a generic representation of our function.
+```swift
+func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+```
+The body of our two functions is the same. But the first line of is slightly different. The generic version of the function uses a placeholder type name (called `T`) instead of an actual type name (such as `Int`, `String`, or `Double`). The placeholder type name doesn’t say anything about what `T` must be, but it does say that both `a` and `b` must be of the same type `T`. The actual type to use in place of `T` is determined each time the function is called.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#45 UserDefaults during testing]()
 
