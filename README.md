@@ -4,7 +4,9 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#46 Generic basics]()<br />
+[#48 `Result` error handling](https://github.com/Luur/SwiftTips#48-result-error-handling)<br />
+[#47 Generics: Type parameters](https://github.com/Luur/SwiftTips#47-generics-type-parameters)<br />
+[#46 Generics: Basics](https://github.com/Luur/SwiftTips#46-generics-basics)<br />
 [#45 UserDefaults during testing](https://github.com/Luur/SwiftTips#45-userdefaults-during-testing)<br />
 [#44 Additional Info to #38 Protocols: Optional methods](https://github.com/Luur/SwiftTips#44-additional-info-to-38-protocols-optional-methods)<br />
 [#43 Responsible view controller for particular view](https://github.com/Luur/SwiftTips#43-responsible-view-controller-for-particular-view)<br />
@@ -51,9 +53,56 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
+## [#48 `Result` error handling]()
+
+Error handling is realy common functionality. But if you want to handle errors across asynchronous boundaries or store value/error results for later processing, then ordinary Swift error handling won’t help. The best alternative is a common pattern called a `Result` type: it stores a value/error “sum” type (either one or the other) and can be used between any two arbitrary execution contexts.
+
+Example of `Result` type:
+
+```swift
+enum Result<T> {
+    case success(result: T)
+    case failure(error: String)
+}
+```
+
+Usage of `Result` type:
+
+```swift
+protocol TaskStoreProtocol {
+    func fetchTasks(handler: @escaping TaskStoreFetchTasksResult)
+}
+
+typealias TaskStoreFetchTasksResult = (_ result: Result<[Task]>) -> Void
+
+class TasksStore: TasksStoreProtocol {
+    
+    func fetchTasks(handler: @escaping TaskStoreFetchTasksResult) {
+        // Some useful code, network request or something like this goes here
+        if success {
+            handler(Result.success(result: fetchedTasks))
+        } else {
+            handler(Result.failure(error: error))
+        }
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+
+## [#47 Generics: Type parameters]()
+
+Here I want to introduce you with general info about generic type parameters and their naming style. Type parameters specify and name a placeholder type, and are written immediately after the function’s name, between a pair of angle brackets (such as `<T>`). Once you specify a type parameter, you can use it to define the type of a function’s parameters, or as the function’s return type, or as a type annotation within the body of the function. In each case, the type parameter is replaced with an actual type whenever the function is called.
+
+You can provide more than one type parameter by writing multiple names within the angle brackets, separated by commas.
+
+In most cases, type parameters have descriptive names, such as `Key` and `Value` in `Dictionary<Key, Value>` and `Element` in `Array<Element>`, which tells about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as `T`, `U`, and `V`.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+
 ## [#46 Generics: Basics]()
 
-Generics are one of the most powerful features of Swift. It gives you opportinity to write flexible, reusable functions. Types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted way.
+You can find usage of generics in several of my tips. So here I want to show you some basics of generics. They are one of the most powerful features of Swift. It gives you opportinity to write flexible, reusable functions. Types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted way.
 
 At first, here is nongeneric function which swaps two `Int` values:
 ```swift
