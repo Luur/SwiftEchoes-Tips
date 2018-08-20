@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#50 StackView custom spacing](https://github.com/Luur/SwiftTips#50-stackview-custom-spacing)<br />
 [#49 Named UIColor](https://github.com/Luur/SwiftTips#49-named-uicolor)<br />
 [#48 `Result` error handling](https://github.com/Luur/SwiftTips#48-result-error-handling)<br />
 [#47 Generics: Type parameters](https://github.com/Luur/SwiftTips#47-generics-type-parameters)<br />
@@ -53,6 +54,25 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#50 `StackView` custom spacing](https://twitter.com/szubyak/status/1031853568586854400)<br />
+
+`StackView`, introduced in iOS 9, made Auto Layout usage much easier, because of reducing the amount of constraints needed to create manually for common layouts. But we faced with the problem, property `spacing` applies equally to the arranged subviews of `StackView`. Before iOS 11, there were 2 ways how to overcome this problem.
+One way is to create views with desired height and use them as spacer views or we could do it by nesting stack views but these two ways always seemed to be an unnecessary complication.
+
+ In iOS 11 you can create stack views with custom spacing between views. But there is no way to specify this custom spacing in Storyboard, only in code.
+ 
+ ```swift
+stackView.setCustomSpacing(32.0, after: label)
+```
+
+Also, in iOS 11 Apple introduced default and system spacing properties on the `UIStackView` class. You can use these to set or reset the custom spacing after a view.
+
+```swift
+stackview.setCustomSpacing(UIStackView.spacingUseSystem, after: label)
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#49 Named UIColor](https://twitter.com/szubyak/status/1031489173440684032)<br />
 
