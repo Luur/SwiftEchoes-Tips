@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#49 Named UIColor](https://github.com/Luur/SwiftTips#49-named-uicolor)<br />
 [#48 `Result` error handling](https://github.com/Luur/SwiftTips#48-result-error-handling)<br />
 [#47 Generics: Type parameters](https://github.com/Luur/SwiftTips#47-generics-type-parameters)<br />
 [#46 Generics: Basics](https://github.com/Luur/SwiftTips#46-generics-basics)<br />
@@ -52,6 +53,22 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#49 Named UIColor](https://twitter.com/szubyak/status/1031489173440684032)<br />
+
+XCode 9.0 gives us opportunity to create named colors. We can do it directly inside assets catalog and use it in code and stotyboards. Named colors contain 3 parts: name ("FerrariRed"), color specified as range and device compatibility.
+
+![](../master/Sources/49/img.png)
+
+Created named color you can use like this:
+
+```swift
+view.backgroundColor = UIColor(named: "FerrariRed")
+```
+
+Inside storyboards you can use created named color by selecting it from the color dropdown menu.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#48 `Result` error handling]()
 
