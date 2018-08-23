@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#51 `zip()` function](https://github.com/Luur/SwiftTips#51-zip-function)<br />
 [#50 StackView custom spacing](https://github.com/Luur/SwiftTips#50-stackview-custom-spacing)<br />
 [#49 Named UIColor](https://github.com/Luur/SwiftTips#49-named-uicolor)<br />
 [#48 `Result` error handling](https://github.com/Luur/SwiftTips#48-result-error-handling)<br />
@@ -55,7 +56,19 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
-## [#50 `StackView` custom spacing](https://twitter.com/szubyak/status/1031853568586854400)<br />
+## [#51 `zip()` function](https://twitter.com/szubyak/status/1032565476143050753)
+
+Let’s imagine you have an array of LOTR heroes, and an array of weapons that match those heros. How could I create a list with the heros and weapons combined at each index? `zip()` function is designed to combine two sequences into a single sequence of tuples. 
+
+![](../master/Sources/51/img.png)
+
+Note: I would recomend to wrap the output from `zip()` into array to make its output easier to read.
+
+One of the useful features of `zip()` is that if your two arrays arent equal in size it will choose the shorter one. Yes, it will not crash your application, just ignore element which doesn’t have a match in second sequence.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+
+## [#50 `StackView` custom spacing](https://twitter.com/szubyak/status/1031853568586854400)
 
 `StackView`, introduced in iOS 9, made Auto Layout usage much easier, because of reducing the amount of constraints needed to create manually for common layouts. But we faced with the problem, property `spacing` applies equally to the arranged subviews of `StackView`. Before iOS 11, there were 2 ways how to overcome this problem.
 One way is to create views with desired height and use them as spacer views or we could do it by nesting stack views but these two ways always seemed to be an unnecessary complication.
@@ -74,7 +87,7 @@ stackview.setCustomSpacing(UIStackView.spacingUseSystem, after: label)
 
 Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
-## [#49 Named UIColor](https://twitter.com/szubyak/status/1031489173440684032)<br />
+## [#49 Named UIColor](https://twitter.com/szubyak/status/1031489173440684032)
 
 XCode 9.0 gives us opportunity to create named colors. We can do it directly inside assets catalog and use it in code and stotyboards. Named colors contain 3 parts: name ("FerrariRed"), color specified as range and device compatibility.
 
