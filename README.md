@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#52 Point on circle perimeter](https://github.com/Luur/SwiftTips#52-point-on-circle-perimeter)<br />
 [#51 `zip()` function](https://github.com/Luur/SwiftTips#51-zip-function)<br />
 [#50 StackView custom spacing](https://github.com/Luur/SwiftTips#50-stackview-custom-spacing)<br />
 [#49 Named UIColor](https://github.com/Luur/SwiftTips#49-named-uicolor)<br />
@@ -55,6 +56,23 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#52 Point on circle perimeter](https://twitter.com/szubyak/status/1034785953200726023)
+
+Could be useful solution for positioning nodes in your game or views in ordinary business application on the perimeter of circle.
+
+```swift
+func pointOnCircle(radius: Float, center: CGPoint) -> CGPoint {
+    // Random angle between 0 and 2*pi
+    let theta = Float(arc4random_uniform(UInt32.max)) / Float(UInt32.max-1) * .pi * 2.0
+    // Convert polar to cartesian
+    let x = radius * cos(theta)
+    let y = radius * sin(theta)
+    return CGPoint(x: CGFloat(x) + center.x, y: CGFloat(y) + center.y)
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#51 `zip()` function](https://twitter.com/szubyak/status/1032565476143050753)
 
