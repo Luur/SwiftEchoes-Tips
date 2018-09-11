@@ -4,7 +4,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
-[#53 `sut` and test lifecycle]()<br />
+[#54 Given, When, Then](https://github.com/Luur/SwiftTips#54-given-when-then)<br />
+[#53 `sut` and test lifecycle](https://github.com/Luur/SwiftTips#53-sut-and-test-lifecycle)<br />
 [#52 Point on circle perimeter](https://github.com/Luur/SwiftTips#52-point-on-circle-perimeter)<br />
 [#51 `zip()` function](https://github.com/Luur/SwiftTips#51-zip-function)<br />
 [#50 StackView custom spacing](https://github.com/Luur/SwiftTips#50-stackview-custom-spacing)<br />
@@ -58,11 +59,35 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
-## [#53 `sut` and test lifecycle]()
+## [#54 Given, When, Then]()
 
-The "subject under test" is always named `sut` . It refers to a subject that is being tested for correct operation. It is short for "whatever thing we are testing" and is always defined from the perspective of the test.  So when you look at your tests, there is no ambiguity as to what is being tested. All other objects are named after their types. Clearly identifying the subject under test in the `sut` variable makes it stand out from the rest.
+In unit testing terms, there are three phases to a unit test:
 
-The test lifecycle for each test is surrounded by a pair of functions - `setUp()` and `tearDown()`. The `setUp()` function is called before the execution of each test function in the test class. The `tearDown()` function is called after the execution of each test function in the test class. They provide you a place to prepare the `sut` ready before the test starts, and clean up the `sut` and any states after the test finishes. It’s important that each test starts with the desired initial state.
+* **Given** prepares the **preconditions** for the test. These preconditions include arguments to the function call, states of the subject, and any test doubles that are used to inspect the test subject in subsequent assertions.
+* The **When** phase can be as simple as making the call to the function on the test subject. In the **when** section an operation to be tested is performed.
+* The **Then** phase verifies the actual results against your expected results. These are done with **assertions** statements. An assertion can check if something is true or false, nil or non-nil, two objects match or not.
+
+```swift
+func testSum() {
+    // Given
+    let firstValue = 4
+    let secondValue = 3
+    // When
+    let sum = sut.sum(firstValue: firstValue, secondValue: secondValue)
+    // Then
+    XCTAssertEqual(sum, 7)
+}
+```
+
+Note: When comparing two values using `XCTAssertEqual` you should always put the actual value first before the expected value.
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+
+## [#53 `sut` and test lifecycle](https://twitter.com/szubyak/status/1039464769403670529)
+
+The **subject under test** is always named `sut` . It refers to a subject that is being tested for correct operation. It is short for "whatever thing we are testing" and is always defined from the perspective of the test.  So when you look at your tests, there is no ambiguity as to what is being tested. All other objects are named after their types. Clearly identifying the subject under test in the `sut` variable makes it stand out from the rest.
+
+The **test lifecycle** for each test is surrounded by a pair of functions - `setUp()` and `tearDown()`. The `setUp()` function is called before the execution of each test function in the test class. The `tearDown()` function is called after the execution of each test function in the test class. They provide you a place to prepare the `sut` ready before the test starts, and clean up the `sut` and any states after the test finishes. It’s important that each test starts with the desired initial state.
 
 ```swift
 import XCTest
