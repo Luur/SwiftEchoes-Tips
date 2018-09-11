@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#53 `sut` and test lifecycle]()<br />
 [#52 Point on circle perimeter](https://github.com/Luur/SwiftTips#52-point-on-circle-perimeter)<br />
 [#51 `zip()` function](https://github.com/Luur/SwiftTips#51-zip-function)<br />
 [#50 StackView custom spacing](https://github.com/Luur/SwiftTips#50-stackview-custom-spacing)<br />
@@ -56,6 +57,37 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#53 `sut` and test lifecycle]()
+
+The "subject under test" is always named `sut` . It refers to a subject that is being tested for correct operation. It is short for "whatever thing we are testing" and is always defined from the perspective of the test.  So when you look at your tests, there is no ambiguity as to what is being tested. All other objects are named after their types. Clearly identifying the subject under test in the `sut` variable makes it stand out from the rest.
+
+The test lifecycle for each test is surrounded by a pair of functions - `setUp()` and `tearDown()`. The `setUp()` function is called before the execution of each test function in the test class. The `tearDown()` function is called after the execution of each test function in the test class. They provide you a place to prepare the `sut` ready before the test starts, and clean up the `sut` and any states after the test finishes. It’s important that each test starts with the desired initial state.
+
+```swift
+import XCTest
+
+class YourClassTests: XCTestCase {
+
+    // MARK: - Subject under test
+    
+    var sut: YourClass!
+    
+    // MARK: - Test lifecycle
+    
+    override func setUp() {
+        super.setUp()
+        sut = YourClass()
+    }
+    
+    override func tearDown() {
+        sut = nil
+        super.tearDown()
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#52 Point on circle perimeter](https://twitter.com/szubyak/status/1034785953200726023)
 
