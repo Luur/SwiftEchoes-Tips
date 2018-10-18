@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#55 'Result' type without value to provide](https://github.com/Luur/SwiftTips#55-result-type-without-value-to-provide)<br />
 [#54 Given, When, Then](https://github.com/Luur/SwiftTips#54-given-when-then)<br />
 [#53 `sut` and test lifecycle](https://github.com/Luur/SwiftTips#53-sut-and-test-lifecycle)<br />
 [#52 Point on circle perimeter](https://github.com/Luur/SwiftTips#52-point-on-circle-perimeter)<br />
@@ -59,7 +60,52 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
-## [#54 Given, When, Then]()
+## [#55 `Result` type without value to provide]()
+
+`Result` type usage is really popular nowadays.
+
+```swift
+enum Result<T> {
+    case success(result: T)
+    case failure(error: Error)
+}
+
+func login(with credentials: Credentials, handler: @escaping (_ result: Result<User>) -> Void) {
+    // Two possible options:
+    handler(Result.success(result: user))
+    handler(Result.failure(error: UserError.notFound))
+}
+```
+
+`login(with:)` operation has `user` value to provide and default `Result` type fits perfectly here. But let’s imagine that your operation hasn’t got value to provide or you don’t care about it. Default `Result` type makes you to provide the result value any way.
+
+![](../master/Sources/55/img.png)
+
+To fix this inconvenience you need to add extension and instantiate a generic with an associated value of type `Void`.
+
+```swift
+func login(with credentials: Credentials, handler: @escaping (_ result: Result<Void>) -> Void)
+
+extension Result where T == Void {
+    static var success: Result {
+        return .success(result: ())
+    }
+}
+```
+
+Now we can change our `func login(with:)` a bit, to ignore result success value if we don’t care about it.
+
+```swift
+func login(with credentials: Credentials, handler: @escaping (_ result: Result<Void>) -> Void) {
+    // Two possible options:
+    handler(Result.success)
+    handler(Result.failure(error: UserError.notFound))
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+
+## [#54 Given, When, Then](https://twitter.com/szubyak/status/1052886769375596545)
 
 In unit testing terms, there are three phases to a unit test:
 
