@@ -4,6 +4,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## Table of contents
 
+[#56 Custom `Error` by adopting `LocalizedError` protocol](https://github.com/Luur/SwiftTips#56-custom-error-by-adopting-localizederror-protocol)<br />
 [#55 'Result' type without value to provide](https://github.com/Luur/SwiftTips#55-result-type-without-value-to-provide)<br />
 [#54 Given, When, Then](https://github.com/Luur/SwiftTips#54-given-when-then)<br />
 [#53 `sut` and test lifecycle](https://github.com/Luur/SwiftTips#53-sut-and-test-lifecycle)<br />
@@ -59,6 +60,83 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#56 Custom `Error` by adopting `LocalizedError` protocol]()
+
+Custom errors are an integral parts of you work. Swift-defined error types can provide localized error descriptions by adopting the new `LocalizedError` protocol. 
+
+```swift
+enum UserError: Error {
+    case credentialsNotMatch
+    case invalidEmail
+    case invalidName
+}
+
+extension UserError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+            case .credentialsNotMatch:
+                return NSLocalizedString("Your username and/or password do not match", comment: "Credentials do not match")
+            case .invalidEmail:
+                return NSLocalizedString("Please enter email address in format: yourname@example.com", comment: "Invalid email format")
+            case .invalidName:
+                return NSLocalizedString("Please enter you name", comment: "Name field is blank")
+        }
+    }
+}
+```
+
+Example:
+
+```swift
+func validate(email: String?, password: String?) throws {
+    throw UserError.credentialsNotMatch
+}
+
+do {
+    try validate(email: "email", password: "password")
+} catch UserError.credentialsNotMatch {
+    print(UserError.credentialsNotMatch.localizedDescription)
+}
+```
+
+You can provide even more information. It's common decency to show user except error description also failure reasons and recovery suggestions. Sorry for ambiguous error messages :)
+
+```swift
+enum ProfileError: Error {
+    case invalidSettings
+}
+
+extension ProfileError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+            case .invalidSettings:
+                return NSLocalizedString("Your profile settings are incorrect", comment: "")
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+            case .invalidSettings:
+                return NSLocalizedString("I don't know why", comment: "")
+        }
+    }
+    
+    public var recoverySuggestion: String? {
+        switch self {
+            case .invalidSettings:
+                return NSLocalizedString("Please provide correct profile settings", comment: "")
+        }
+    }
+}
+
+let error = ProfileError.invalidSettings
+print(error.errorDescription)
+print(error.failureReason)
+print(error.recoverySuggestion)
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#55 `Result` type without value to provide]()
 
