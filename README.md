@@ -1,8 +1,12 @@
-# Swift tips and tricks
+<p align="center">
+    <img src="Logo.png" width="1700" max-width="100%" alt="Swift Tips" />
+</p>
+
+# 🔥 Swift tips and tricks
 
 Here's list of Swift tips & tricks with all additional sources (playgrounds, images) that I would like to share. Also you can find them on [Twitter @szubyak](https://twitter.com/szubyak), where you can ask questions and respond with feedback. I will really glad to have you there! 😀
 
-## Table of contents
+## 📃 Table of contents
 
 [#56 Custom `Error` by adopting `LocalizedError` protocol](https://github.com/Luur/SwiftTips#56-custom-error-by-adopting-localizederror-protocol)<br />
 [#55 'Result' type without value to provide](https://github.com/Luur/SwiftTips#55-result-type-without-value-to-provide)<br />
