@@ -8,6 +8,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
+[#57 Render HTML within a `UILabel`](https://github.com/Luur/SwiftTips#57-render-html-within-a-uilabel)<br />
 [#56 Custom `Error` by adopting `LocalizedError` protocol](https://github.com/Luur/SwiftTips#56-custom-error-by-adopting-localizederror-protocol)<br />
 [#55 'Result' type without value to provide](https://github.com/Luur/SwiftTips#55-result-type-without-value-to-provide)<br />
 [#54 Given, When, Then](https://github.com/Luur/SwiftTips#54-given-when-then)<br />
@@ -64,6 +65,30 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#57 Render HTML within a `UILabel`]()
+
+You can render HTML strings within a `UILabel` using a special initializer of `NSAttributedString` and passing in `NSAttributedString.DocumentType.html` for `.documentType`. But in most cases it is not enough to display it as is. If we want to add custom font or color we need to use CSS (add CSS header to our HTML string).
+
+```swift
+extension String {
+
+    func htmlAttributedString(with fontName: String, fontSize: Int, colorHex: String) -> NSAttributedString? {
+        do {
+            let cssPrefix = "<style>* { font-family: \(fontName); color: #\(colorHex); font-size: \(fontSize); }</style>"
+            let html = cssPrefix + self
+            guard let data = html.data(using: String.Encoding.utf8) else {  return nil }
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return nil
+        }
+    }
+}
+```
+
+Usage [example](https://github.com/Luur/SwiftTips/blob/master/Sources/57/example.playground/Contents.swift)
+
+Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
 
 ## [#56 Custom `Error` by adopting `LocalizedError` protocol]()
 
