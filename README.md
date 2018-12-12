@@ -88,7 +88,7 @@ extension String {
 
 Usage [example](https://github.com/Luur/SwiftTips/blob/master/Sources/57/example.playground/Contents.swift)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#56 Custom `Error` by adopting `LocalizedError` protocol]()
 
@@ -165,7 +165,7 @@ print(error.failureReason)
 print(error.recoverySuggestion)
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#55 `Result` type without value to provide]()
 
@@ -210,7 +210,7 @@ func login(with credentials: Credentials, handler: @escaping (_ result: Result<V
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#54 Given, When, Then](https://twitter.com/szubyak/status/1052886769375596545)
 
@@ -234,7 +234,7 @@ func testSum() {
 
 Note: When comparing two values using `XCTAssertEqual` you should always put the actual value first before the expected value.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#53 `sut` and test lifecycle](https://twitter.com/szubyak/status/1039464769403670529)
 
@@ -265,7 +265,7 @@ class YourClassTests: XCTestCase {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#52 Point on circle perimeter](https://twitter.com/szubyak/status/1034785953200726023)
 
@@ -282,7 +282,7 @@ func pointOnCircle(radius: Float, center: CGPoint) -> CGPoint {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#51 `zip()` function](https://twitter.com/szubyak/status/1032565476143050753)
 
@@ -294,7 +294,7 @@ Note: I would recomend to wrap the output from `zip()` into array to make its ou
 
 One of the useful features of `zip()` is that if your two arrays arent equal in size it will choose the shorter one. Yes, it will not crash your application, just ignore element which doesn’t have a match in second sequence.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#50 `StackView` custom spacing](https://twitter.com/szubyak/status/1031853568586854400)
 
@@ -313,7 +313,7 @@ Also, in iOS 11 Apple introduced default and system spacing properties on the `U
 stackview.setCustomSpacing(UIStackView.spacingUseSystem, after: label)
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#49 Named UIColor](https://twitter.com/szubyak/status/1031489173440684032)
 
@@ -329,7 +329,7 @@ view.backgroundColor = UIColor(named: "FerrariRed")
 
 Inside storyboards you can use created named color by selecting it from the color dropdown menu.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#48 `Result` error handling]()
 
@@ -366,7 +366,7 @@ class TasksStore: TasksStoreProtocol {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#47 Generics: Type parameters]()
 
@@ -376,7 +376,7 @@ You can provide more than one type parameter by writing multiple names within th
 
 In most cases, type parameters have descriptive names, such as `Key` and `Value` in `Dictionary<Key, Value>` and `Element` in `Array<Element>`, which tells about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as `T`, `U`, and `V`.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#46 Generics: Basics]()
 
@@ -402,7 +402,7 @@ func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
 ```
 The body of our two functions is the same. But the first line of is slightly different. The generic version of the function uses a placeholder type name (called `T`) instead of an actual type name (such as `Int`, `String`, or `Double`). The placeholder type name doesn’t say anything about what `T` must be, but it does say that both `a` and `b` must be of the same type `T`. The actual type to use in place of `T` is determined each time the function is called.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#45 UserDefaults during testing]()
 
@@ -440,7 +440,7 @@ class MyTests: XCTestCase {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#44 Additional Info to #38 Protocols: Optional methods]()
 
@@ -459,7 +459,7 @@ extension CarEngineStatusDelegate {
 
 This way the class/struct that will use our protocol will only need to implement `func engineDidStop()`.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#43 Responsible view controller for particular view](https://twitter.com/szubyak/status/1015960175247872000)
 
@@ -481,8 +481,7 @@ extension UIView {
 
 You should only use it when you really need it – if you’re able to call methods directly using a delegate or indirectly by posting notifications then do it in first place.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
-
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#42 Move between textfields](https://twitter.com/szubyak/status/1011979216802533376)
 
@@ -502,7 +501,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
 If you need to force the first responder to resign itself and aren’t sure which textfield is in control, it’s easier to use `view.endEditing(true)`.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#41 Autogenerated `allCases` property for your `enum` (Swift 4.2)](https://twitter.com/szubyak/status/1008631549888167937)
 
@@ -532,7 +531,7 @@ for car in Cars.allCases {
     print(car)
 }
 ```
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#40 Protocols: Class-only](https://twitter.com/szubyak/status/1006181062827966465)<br />
 
@@ -543,7 +542,7 @@ weak var delegate: CarDelegate?
 ```
 The `weak` keyword can't be used with structs and enums, because they are value types.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#39 Protocols: Inheritance and composition](https://twitter.com/szubyak/status/1005056393697742849)<br />
 
@@ -561,7 +560,7 @@ protocol CarMovingStatusDelegate { }
 protocol CarDelegate: CarMovingStatusDelegate, CarEngineStatusDelegate { }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#38 Protocols: Optional methods](https://twitter.com/szubyak/status/1004694921457086464)<br />
 
@@ -613,7 +612,7 @@ delegate?.engineWillStop?()
 The `delegate` property is optional because there might not be a delegate assigned. And in the `CarDelegate` protocol we made `engineWillStop()` an optional requirement, so even if a delegate is present it might not implement that method.
 As a result, we need to use optional chaining.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#37 Protocols: Naming](https://twitter.com/szubyak/status/1003204523006021632)<br />
 
@@ -623,7 +622,7 @@ If we are talking about naming the protocol itself:
 
 Briefly talking about methods names inside protocol, you can use whatever names you want. But, if your protocol is created to represent delegates please look:  [#32 Delegate naming](https://github.com/Luur/SwiftTips#32-delegate-naming)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#36 Property observers, getter/setter and lazy are mutually exclusive](https://twitter.com/szubyak/status/1001754575857168384)<br />
 
@@ -631,7 +630,7 @@ Little thing that surprisingly became a discovery for me, because it's rare case
 
 ![](../master/Sources/36/img.png)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#35 Prepare Alamofire standalone functions to unit-testing]()
 
@@ -714,7 +713,7 @@ class AlamofireWrapperSpy: AlamofireWrapper {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#34 Sort array of objects with multiple optional criteria](https://twitter.com/szubyak/status/999579540602216448)
 
@@ -747,7 +746,7 @@ let places = [Place(rating: 3, distance: 127), Place(rating: 4, distance: 423), 
 let sortedPlaces = sortPlacesByRatingAndDistance(places) // [{rating 5, nil}, {rating 4, distance 423}, {rating 3, distance 127}, {nil, distance 34}, {nil, distance 100}, {nil, nil}]
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#33 Remove object from array](https://twitter.com/szubyak/status/997471185008021505)
 
@@ -763,7 +762,7 @@ extension Array where Element: Equatable {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#32 Delegate naming](https://twitter.com/szubyak/status/997063113659813890)
 
@@ -777,7 +776,7 @@ As a result, Apple delegates have a very specific naming convention:
 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents) 
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#31 Run, Playground, run!]()
 
@@ -789,7 +788,7 @@ Tell the playground it should continue running forever, otherwise it will termin
 PlaygroundPage.current.needsIndefiniteExecution = true
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#30 `DispatchGroup` usage]()
 
@@ -820,7 +819,7 @@ Each call to `enter()` must be matched later on with a call to `leave()`, after 
 * A further option is `wait(timeout:)`. This blocks the current thread, but after the timeout specified, continues anyway. To create a timeout object of type `DispatchTime`, the syntax `.now() + 1` will create a timeout one second from now.
 * `wait(timeout:)` returns an enum that can be used to determine whether the group completed, or timed out.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#29 Remove duplicates](https://twitter.com/szubyak/status/993399930457939968)
 
@@ -842,7 +841,7 @@ extension Array {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#28 Debugging: View Debugging](https://twitter.com/szubyak/status/992667725574045696)
 
@@ -859,7 +858,7 @@ If you have a complicated view layout, `View Debugging` > `Show View Frames` opt
 
 More about view debugging [here](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/debugging_with_xcode/chapters/special_debugging_workflows.html)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#27 Debugging: Breakpoints](https://twitter.com/szubyak/status/989442320260108288)
 
@@ -884,7 +883,7 @@ In Xcode debug console you can use `po` to print what you need during pause.
 
 ![](../master/Sources/27/img3.png)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#26 Debugging: Asserts](https://twitter.com/szubyak/status/989153864472547328)
 
@@ -917,7 +916,7 @@ fatalError("ERROR")
 
 More about asserts and optimisation levels you can find [here](https://agostini.tech/2017/10/01/assert-precondition-and-fatal-error-in-swift/)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#25 Debugging: Log functions](https://twitter.com/szubyak/status/988328809681342464) 
 
@@ -943,7 +942,7 @@ It’s `\n` by default, which means "line break".
 print("one", "two", "three", "four", terminator: " five") //one two three four five
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#24 Update `UIView` content with animation](https://twitter.com/szubyak/status/985434399138304000)
 
@@ -967,7 +966,7 @@ label.fadeTransition(1)
 label.text = "Updated test content with animation"
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#23 Observe MOC changes](https://twitter.com/szubyak/status/983647253234626560)
 
@@ -1000,7 +999,7 @@ func changeNotification(_ notification: Notification) {
 
 NotificationCenter.default.addObserver(self, selector: #selector(self.changeNotification(_:)), name: .NSManagedObjectContextObjectsDidChange, object: moc)
 ```
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#22 Split `String` into words](https://twitter.com/szubyak/status/981833649296498689)
 
@@ -1016,7 +1015,7 @@ extension String {
     }
 }
 ```
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#21 Comparing tuples](https://twitter.com/szubyak/status/980119909387599873)
 
@@ -1033,7 +1032,7 @@ if car == company {
 ```
 Printed result will be: `Equal`
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#20 How to detect that user stop typing](https://twitter.com/szubyak/status/978659051893555201)
 
@@ -1068,7 +1067,7 @@ extension TestViewController: UITextFieldDelegate {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#19 Left/rigth text offset inside `UITextField`](https://twitter.com/szubyak/status/976547738908323840)
 
@@ -1102,7 +1101,7 @@ extension UITextField {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#18 Common elements in two arrays](https://twitter.com/szubyak/status/975736596661178369)
 
@@ -1115,7 +1114,7 @@ func  &<T : Equatable>(lhs: [T], rhs: [T]) -> [T] {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#17 Apply gradient to Navigation Bar](https://twitter.com/szubyak/status/974580828750704641)
 
@@ -1152,7 +1151,7 @@ extension UINavigationBar {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#16 Get next element of array](https://twitter.com/szubyak/status/973146709030207489)
 
@@ -1169,7 +1168,7 @@ extension Array where Element: Hashable {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#15 Split array by chunks of given size](https://twitter.com/szubyak/status/971351860820037632)
 
@@ -1186,7 +1185,7 @@ extension Array {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#14 Transparent/Opaque Navigation Bar](https://twitter.com/szubyak/status/970962096245628929)
 Scene with `UIImageView` on top looks stylish if navigation bar is transparent.
@@ -1204,7 +1203,7 @@ func opaqueNavigationBar() {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#13 Group objects by property](https://twitter.com/szubyak/status/966248375988490240)
 
@@ -1260,7 +1259,7 @@ Result:
 
 Also in-box [alternative](https://developer.apple.com/documentation/swift/dictionary/2919592-init)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#12 Semicolons in Swift](https://twitter.com/szubyak/status/963144748004454400)
 
@@ -1272,7 +1271,7 @@ func sum(a: Int, b: Int) -> Int {
 }
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#11 Fake AppDelegate](https://twitter.com/szubyak/status/963013740265385984)
 
@@ -1280,7 +1279,7 @@ Unit testing shouldn’t have any side effects. While running tests, Xcode first
 
 You can find `main.swift` file [here](../master/Sources/11/main.swift)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#10 Invoke `didSet` when property’s value is set inside `init` context](https://twitter.com/szubyak/status/961707655105531905)
 
@@ -1324,7 +1323,7 @@ Result:
 Function: propertyBB
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#9 Change type of items in array](https://twitter.com/szubyak/status/956544356370059265)
 
@@ -1336,13 +1335,13 @@ let mapNumbers = numbers.map { Int($0) }  // [Optional(1), Optional(2), Optional
 let compactNumbers = numbers.compactMap { Int($0) } // [1, 2, 3, 4]
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#8 `forEach` and `map` execution order difference](https://twitter.com/szubyak/status/956538549444186112)
 
 Execution order is interesting difference between `forEach` and `map`: `forEach` is guaranteed to go through array elements in its sequence, while `map` is free to go in any order.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#7 Testing settings](https://twitter.com/szubyak/status/955468985121886208)
 
@@ -1351,7 +1350,7 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 ![](../master/Sources/7/img.jpeg)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#6 Tips for writing error messages](https://twitter.com/szubyak/status/955054366419013632)
 
@@ -1361,13 +1360,13 @@ Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
 
 [Common​ ​Types​ ​of​ ​Error​ ​Messages](../master/Sources/6/Common​​Error​​Messages.pdf)
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#5 Profit to compiler](https://twitter.com/szubyak/status/954329152160780288)
 
 Do you know that using `map` gives profit to the compiler: it's now clear we want to apply some code to every item in an array, then like in `for` loop we could have `break` on halfway through.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#4 Combinations of pure functions](https://twitter.com/szubyak/status/953993641391017984)
 
@@ -1385,7 +1384,7 @@ let max = colors.max() // white
 let last = colors.sorted().last // white
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#3 Enumerated iteration](https://twitter.com/szubyak/status/951039299759362048)
 
@@ -1407,7 +1406,7 @@ Result:
 
 Also be careful with this tricky thing, `enumerated` on collection will not provide actual indices, but monotonically increasing integer, which happens to be the same as the index for Array but not for anything else, especially slices.
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#2 Easy way to hide Status Bar](https://twitter.com/szubyak/status/950687583222337537)
 
@@ -1428,7 +1427,7 @@ let testVC = TestViewController()
 print("statusBarHidded \(testVC.prefersStatusBarHidden)") // true
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#1 Safe way to return element at specified index](https://twitter.com/szubyak/status/950345927054778368)
 
@@ -1446,4 +1445,4 @@ let selectedCar1 = cars[safe: 3] // Toyota
 let selectedCar2 = cars[safe: 6] // not crash, but nil
 ```
 
-Back to [Top](https://github.com/Luur/SwiftTips#table-of-contents)
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
