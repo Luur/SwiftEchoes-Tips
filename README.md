@@ -8,6 +8,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
+[#58 Load `UIView` from `Nib` file](#58-load-uiview-from-nib-file)<br />
 [#57 Render HTML within a `UILabel`](https://github.com/Luur/SwiftTips#57-render-html-within-a-uilabel)<br />
 [#56 Custom `Error` by adopting `LocalizedError` protocol](https://github.com/Luur/SwiftTips#56-custom-error-by-adopting-localizederror-protocol)<br />
 [#55 'Result' type without value to provide](https://github.com/Luur/SwiftTips#55-result-type-without-value-to-provide)<br />
@@ -65,6 +66,35 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#58 Load `UIView` from `Nib` file]()
+
+You can load `UIView` from `Nib` file
+
+```swift
+protocol NibLoadable {
+    static var nib:UINib { get }
+}
+
+extension NibLoadable where Self: UIView {
+    static var nib: UINib {
+        let className = String(describing: self)
+        return UINib(nibName: className, bundle: Bundle(for: self))
+    }
+
+    static func view() -> Self? {
+        return nib.instantiate(withOwner: self, options: nil).first as? Self
+    }
+}
+```
+
+Example:
+
+```swift
+extension UIView:NibLoadable {}
+
+let inputBox = InputBoxView.view()
+```
 
 ## [#57 Render HTML within a `UILabel`]()
 
