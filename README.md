@@ -8,6 +8,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
+[#59 `AlertPresentable` protocol](https://github.com/Luur/SwiftTips#59-alertpresentable-protocol)<br />
+[#58 CollectionView extension for adaptive grid layout](https://github.com/Luur/SwiftTips#58-collectionview-extension-for-adaptive-grid-layout)<br />
 [#57 Render HTML within a `UILabel`](https://github.com/Luur/SwiftTips#57-render-html-within-a-uilabel)<br />
 [#56 Custom `Error` by adopting `LocalizedError` protocol](https://github.com/Luur/SwiftTips#56-custom-error-by-adopting-localizederror-protocol)<br />
 [#55 'Result' type without value to provide](https://github.com/Luur/SwiftTips#55-result-type-without-value-to-provide)<br />
@@ -65,6 +67,99 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#59 `AlertPresentable` protocol]()
+
+In my current project I work on I present alerts almost on every view controller. To reduce lines of codes and time spent on duplicate code I created `AlertPresentable` layer and want to share it with you.
+Any `ViewController` which implements `AlertPresentable` protocol receive opportunity to present any type of alerts discribed in this layer just by one line of code.
+
+```swift
+protocol AlertPresentable {
+    func presentErrorAlert(with message: String)
+    func presentSuccessAlert(with message: String, action: ((UIAlertAction) -> Void)?)
+    func presentConfirmationAlert(with message: String, action: ((UIAlertAction) -> Void)?)
+}
+
+extension AlertPresentable where Self: UIViewController {
+
+    func presentErrorAlert(with message: String) {
+        presentAlert(message: message, actions: [UIAlertAction(title: "OK", style: .cancel, handler: nil)])
+        }
+
+    func presentSuccessAlert(with message: String, action: ((UIAlertAction) -> Void)?) {
+        presentAlert(message: message, actions: [UIAlertAction(title: "OK", style: .cancel, handler: action)])
+    }
+
+    func presentConfirmationAlert(with message: String, action: ((UIAlertAction) -> Void)?) {
+        presentAlert(message: message, actions: [UIAlertAction(title: "Yes", style: .default, handler: action), UIAlertAction(title: "No", style: .cancel, handler: nil)])
+    }
+
+    private func presentAlert(title: String? = "", message: String? = nil, actions: [UIAlertAction] = []) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actions.forEach { (action) in
+            alertController.addAction(action)
+        }
+        present(alertController, animated: true, completion: nil)
+    }
+}
+```
+
+Usage:
+
+```swift
+class ViewController: UIViewController, AlertPresentable {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        presentErrorAlert(with: "User not found")
+
+        presentSuccessAlert(with: "File downloaded") { _ in
+            // use downloaded file
+        }
+
+        presentConfirmationAlert(with: "Are you sure you would like to sign out?") { _ in
+            // sign out user
+        }
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
+
+## [#58 CollectionView extension for adaptive grid layout]()
+
+Implementation of grid CollectionView layout is a commont task. But I found that calculation of cell width when you dont know how many cells can fit in one row of CollectionView is not a common task.
+
+Here is my extension for calculation width of cell in grid CollectionView to make your layot adaptive.
+
+```swift
+extension UICollectionView {
+
+    func flexibleCellWidth(minCellWidth: CGFloat, minimumInteritemSpacing: CGFloat) -> CGFloat {
+        let contentWidth = frame.size.width - contentInset.left - contentInset.right
+        let numberOfItemsInRow = Int((contentWidth + minimumInteritemSpacing) / (minCellWidth + minimumInteritemSpacing))
+        let spacesWidth = CGFloat(numberOfItemsInRow - 1) * minimumInteritemSpacing
+        let availableContentWidth = contentWidth - spacesWidth
+        return availableContentWidth / CGFloat(numberOfItemsInRow)
+    }
+}
+```
+
+Based on minimal cell width and minimal interitem spacing it autocalculates number of cells in row and return cell width for the best placement.
+
+```swift
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let cellWidth = collectionView.flexibleCellWidth(minCellWidth: 72, minimumInteritemSpacing: 10)
+    return CGSize(width: cellWidth, height: cellWidth)
+}
+```
+
+iPhoneSE   ![](../master/Sources/58/img.png)
+
+iPhoneX     ![](../master/Sources/58/img1.png)
+
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#57 Render HTML within a `UILabel`]()
 
