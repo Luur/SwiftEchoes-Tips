@@ -412,7 +412,7 @@ Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents)
 
 ## [#49 Named UIColor](https://twitter.com/szubyak/status/1031489173440684032)
 
-XCode 9.0 gives us opportunity to create named colors. We can do it directly inside assets catalog and use it in code and stotyboards. Named colors contain 3 parts: name ("FerrariRed"), color specified as range and device compatibility.
+XCode 9.0 gives us opportunity to create named colors. We can do it directly inside assets catalog and use it in code and storyboards. Named colors contain 3 parts: name ("FerrariRed"), color specified as range and device compatibility.
 
 ![](../master/Sources/49/img.png)
 
