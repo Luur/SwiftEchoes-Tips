@@ -8,6 +8,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
+[#60 `UITableViewCell` identifier]()<br />
 [#59 `AlertPresentable` protocol](https://github.com/Luur/SwiftTips#59-alertpresentable-protocol)<br />
 [#58 CollectionView extension for adaptive grid layout](https://github.com/Luur/SwiftTips#58-collectionview-extension-for-adaptive-grid-layout)<br />
 [#57 Render HTML within a `UILabel`](https://github.com/Luur/SwiftTips#57-render-html-within-a-uilabel)<br />
@@ -67,6 +68,25 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#3 Enumerated iteration](https://github.com/Luur/SwiftTips#3-enumerated-iteration)<br />
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
+
+## [#60 `UITableViewCell` identifier]()
+
+ To register or dequeue `UITableViewCell` object we need to provide its string type `identifier`.  Typing string by hand is wasting time and could couse you typos. In this case I would recomend to use extension which declares static `identifier` property inside `UITableViewCell` to avoid these problems.
+ 
+ ```swift
+ extension UITableViewCell {
+    static var identifier: String {
+        return String(describing: self)
+    }
+ }
+ 
+ let cell = tableView.dequeueReusableCell(withIdentifier: ExampleTableViewCell.identifier)
+ tableView.register(ExampleTableViewCell.self, forCellReuseIdentifier: ExampleTableViewCell.identifier)
+ 
+ print(ExampleTableViewCell.identifier) //ExampleTableViewCell
+ ```
+ 
+ Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#59 `AlertPresentable` protocol]()
 
