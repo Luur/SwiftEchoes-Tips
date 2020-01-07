@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Logo.png" width="1700" max-width="100%" alt="Swift Tips" />
+    <img src="Logo.png" width="850" max-width="100%" alt="Swift Tips" />
 </p>
 
 # 🔥 Swift tips and tricks
@@ -8,6 +8,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
+[#61 `XCTUnwrap` assertion function]()<br />
 [#60 `UITableViewCell` identifier]()<br />
 [#59 `AlertPresentable` protocol](https://github.com/Luur/SwiftTips#59-alertpresentable-protocol)<br />
 [#58 CollectionView extension for adaptive grid layout](https://github.com/Luur/SwiftTips#58-collectionview-extension-for-adaptive-grid-layout)<br />
@@ -69,6 +70,51 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
+## [#61 `XCTUnwrap` assertion function]()
+
+In Xcode 11 new assertion function added for use in Swift tests. `XCTUnwrap` asserts that an Optional variable’s value is not `nil`, returning the unwrapped value of expression for subsequent use in the test. It protects you from dealing with conditional chaining for the rest of the test. Also it removes the need to use `XCTAssertNotNil(_:_:file:line:)` with either unwrapping the value. It’s common to unwrap optional before checking it for a particular value so that’s really where `XCTUnwrap()` will come into its own.
+
+```swift
+
+struct Note {
+    var id: Int
+    var title: String
+    var body: String
+}
+
+class NotesViewModel {
+
+    static func all() -> [Note] {
+        return [
+            Note(id: 0, title: "first_note_title", body: "first_note_body"),
+            Note(id: 1, title: "second_note_title", body: "second_note_body"),
+        ]
+    }
+}
+
+
+func testGetFirstNote() throws {
+    let notes = NotesViewModel.all()
+    let firstNote =  try XCTUnwrap(notes.first)
+    XCTAssertEqual(firstNote.title, "first_note_title")
+}
+```
+
+This approach is cleaner than what we might have written previously:
+
+```swift
+func testGetFirstNote() {
+    let notes = NotesViewModel.all()
+    if let firstNote = notes.first {
+        XCTAssertEqual(firstNote.title, "first_note_title")
+    } else {
+        XCTFail("Failed to get first note.")
+    }
+}
+```
+
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
+
 ## [#60 `UITableViewCell` identifier]()
 
  To register or dequeue `UITableViewCell` object we need to provide its string type `identifier`.  Typing string by hand is wasting time and could couse you typos. In this case I would recomend to use extension which declares static `identifier` property inside `UITableViewCell` to avoid these problems.
@@ -88,7 +134,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
  
  Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
-## [#59 `AlertPresentable` protocol]()
+## [#59 `AlertPresentable` protocol](https://twitter.com/szubyak/status/1176760937505837056)
 
 In my current project I work on I present alerts almost on every view controller. To reduce lines of codes and time spent on duplicate code I created `AlertPresentable` layer and want to share it with you.
 Any `ViewController` which implements `AlertPresentable` protocol receive opportunity to present any type of alerts discribed in this layer just by one line of code.
@@ -147,7 +193,7 @@ class ViewController: UIViewController, AlertPresentable {
 
 Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
-## [#58 CollectionView extension for adaptive grid layout]()
+## [#58 CollectionView extension for adaptive grid layout](https://twitter.com/szubyak/status/1171870893817180161)
 
 Implementation of grid CollectionView layout is a commont task. But I found that calculation of cell width when you dont know how many cells can fit in one row of CollectionView is not a common task.
 
@@ -181,7 +227,7 @@ iPhoneX     ![](../master/Sources/58/img1.png)
 
 Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
-## [#57 Render HTML within a `UILabel`]()
+## [#57 Render HTML within a `UILabel`](https://twitter.com/szubyak/status/1171788553665355776)
 
 You can render HTML strings within a `UILabel` using a special initializer of `NSAttributedString` and passing in `NSAttributedString.DocumentType.html` for `.documentType`. But in most cases it is not enough to display it as is. If we want to add custom font or color we need to use CSS (add CSS header to our HTML string).
 
@@ -205,7 +251,7 @@ Usage [example](https://github.com/Luur/SwiftTips/blob/master/Sources/57/example
 
 Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
-## [#56 Custom `Error` by adopting `LocalizedError` protocol]()
+## [#56 Custom `Error` by adopting `LocalizedError` protocol](https://twitter.com/szubyak/status/1074629447364567040)
 
 Custom errors are an integral parts of you work. Swift-defined error types can provide localized error descriptions by adopting the new `LocalizedError` protocol. 
 
@@ -282,7 +328,7 @@ print(error.recoverySuggestion)
 
 Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
-## [#55 `Result` type without value to provide]()
+## [#55 `Result` type without value to provide](https://twitter.com/szubyak/status/1073212384418906112)
 
 `Result` type usage is really popular nowadays.
 
