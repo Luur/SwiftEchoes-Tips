@@ -8,6 +8,8 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
+[#63 `StoryboardIdentifiable` protocol]()<br />
+[#62 "Massive" Storyboard]()<br />
 [#61 `XCTUnwrap` assertion function]()<br />
 [#60 `UITableViewCell` identifier]()<br />
 [#59 `AlertPresentable` protocol](https://github.com/Luur/SwiftTips#59-alertpresentable-protocol)<br />
@@ -70,9 +72,41 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
+## [#63 `StoryboardIdentifiable` protocol]()
+
+https://medium.com/swift-programming/uistoryboard-safer-with-enums-protocol-extensions-and-generics-7aad3883b44d
+
+## [#62 "Massive" Storyboard]()
+
+I'm prety sure that almost every one has heard about "main" MVC problem known as Massive View Controller and how fashionable architectures (MVVM, VIPER, CleanArchitecture) valiantly fight it. But I want to pay attation to not less common problem - massive storyboard. Because of this many developers prefer to make layouts in code insted of storyboard. I've to admit that developers despise storyboards not without reason.
+
+Let's list main storyboard problems:
+
+* Storyboard always become unwieldy and unmanageable.
+![](../master/Sources/62/img.png)
+
+* Storyboard is slow. Extremely slow. As it grows in size, it doesn't only become unhandy for developers but also for XCode. Once you tap on a storyboard file of this size, you can leave your seat, grab a cup of coffee and come back. You’ll be lucky if XCode has loaded the storyboard.
+* Merge Conflicts in Source Control. It’s always a painful experience when multiple developers are working on a project as it almost always leads to merge conflicts in storyboard. Merging storyboards is hell because of their nature - storyboards are just hugeass XML files.
+
+Inspite of the issues, I'm convinced there is a way to make storyboard great again 🇺🇸, resolving most of the above.
+
+"A storyboard is meant to explain a story, not a saga."
+
+Storyboard can be easily splitted into multiple storyboards, with each one representing an individual story. Yes, it's OK not to have one big, fat, slowloading storyboard file but have 30+ devided storyboards.
+
+![](../master/Sources/62/img1.png)
+
+Also don't forget about Storyboard References introduced in iOS 9.
+
+![](../master/Sources/62/img2.png)
+
+**But splitting storyboard will not help with one serious problem.** Storyboard usage has strong coupling with one silent killer known as `String Literals`. Look for the solution in [#63 `StoryboardIdentifiable` protocol]()
+
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
+
 ## [#61 `XCTUnwrap` assertion function]()
 
-In Xcode 11 new assertion function added for use in Swift tests. `XCTUnwrap` asserts that an Optional variable’s value is not `nil`, returning the unwrapped value of expression for subsequent use in the test. It protects you from dealing with conditional chaining for the rest of the test. Also it removes the need to use `XCTAssertNotNil(_:_:file:line:)` with either unwrapping the value. It’s common to unwrap optional before checking it for a particular value so that’s really where `XCTUnwrap()` will come into its own.
+In Xcode 11 new assertion function has been added for use in Swift tests. `XCTUnwrap` asserts that an Optional variable’s value is not `nil`, returning the unwrapped value of expression for subsequent use in the test. It protects you from dealing with conditional chaining for the rest of the test. Also it removes the need to use `XCTAssertNotNil(_:_:file:line:)` with either unwrapping the value. It’s common to unwrap optional before checking it for a particular value so that’s really where `XCTUnwrap()` will come into its own.
 
 ```swift
 
@@ -150,7 +184,7 @@ extension AlertPresentable where Self: UIViewController {
 
     func presentErrorAlert(with message: String) {
         presentAlert(message: message, actions: [UIAlertAction(title: "OK", style: .cancel, handler: nil)])
-        }
+    }
 
     func presentSuccessAlert(with message: String, action: ((UIAlertAction) -> Void)?) {
         presentAlert(message: message, actions: [UIAlertAction(title: "OK", style: .cancel, handler: action)])
