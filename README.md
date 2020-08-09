@@ -8,7 +8,7 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
-[#63 `StoryboardIdentifiable` protocol]()<br />
+[#63 How to make `UIStoryboard` usage safer?]()<br />
 [#62 "Massive" Storyboard]()<br />
 [#61 `XCTUnwrap` assertion function]()<br />
 [#60 `UITableViewCell` identifier]()<br />
@@ -72,9 +72,48 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 [#2 Easy way to hide Status Bar](https://github.com/Luur/SwiftTips#2-easy-way-to-hide-status-bar)<br />
 [#1 Safe way to return element at specified index](https://github.com/Luur/SwiftTips#1-safe-way-to-return-element-at-specified-index)<br />
 
-## [#63 `StoryboardIdentifiable` protocol]()
+## [#63 How to make `UIStoryboard` usage safer?]()
 
-https://medium.com/swift-programming/uistoryboard-safer-with-enums-protocol-extensions-and-generics-7aad3883b44d
+Below I want to show you a few simple ways how to make usage of string literals connected with `UIStoryboard` much more safer.
+
+* Global constant string literals
+At first it sounds like a good idea. You only need to define the constant once and it will be available everywhere. Then if you want to change its value, there is only one place in code to change for which the effects will cascade throughout the project.
+But global constants have some disadvantages. Not as much as global variables but still enought to stop using them. It's not the best practice. I will cover the topic of andvatages and disadavntages of global constants/variables usage in my next posts.
+
+* Relatable storyboard names
+Your storyboards should be named after the sections of which they cover. It's a general rule. If you have a storyboard which houses view controllers are related to Profile, then the name of that storyboard’s file should be `Profile.storyboard`.
+
+* Uniform storyboard identifiers
+When you want to use `Storyboard Identifiers` on your view controllers, usage of the class names as identifiers will be a good practice. For example, “ProfileViewController” would be the identifier for ProfuleViewController.  Adding this to your naming convention is a good idea.
+
+* Enum
+Try to consider enums as uniform, centralized global string literal identifiers for 'UIStoryboard'. You can create UIStoryboard class extension which defines all the storyboard files you have in your project. You can also add the convenience initializer or class function to add more syntactic sugar.
+
+```swift
+extension UIStoryboard {
+    enum Storyboard: String {
+        case profile
+        case login
+        
+        var name: String {
+            return rawValue.capitalized
+        }
+    }
+    
+    convenience init(storyboard: Storyboard, bundle: Bundle? = nil) {
+        self.init(name: storyboard.name, bundle: bundle)
+    }
+    // let storyboard = UIStoryboard(storyboard: .profile)
+    
+    class func storyboard(storyboard: Storyboard, bundle: Bundle? = nil) -> UIStoryboard {
+        return UIStoryboard(name: storyboard.name, bundle: bundle)
+    }
+    // let storyboard = UIStoryboard.storyboard(.profile)
+}
+```
+I hope provided solutions will really help you to maintain your storyboards.
+
+Back to [Top](https://github.com/Luur/SwiftTips#-table-of-contents) 
 
 ## [#62 "Massive" Storyboard]()
 
