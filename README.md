@@ -8,10 +8,10 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 ## 📃 Table of contents
 
-[#63 How to make `UIStoryboard` usage safer?]()<br />
-[#62 "Massive" Storyboard]()<br />
-[#61 `XCTUnwrap` assertion function]()<br />
-[#60 `UITableViewCell` identifier]()<br />
+[#63 How to make `UIStoryboard` usage safer?](https://github.com/Luur/SwiftTips#63-how-to-make-uistoryboard-usage-safer)<br />
+[#62 "Massive" Storyboard](https://github.com/Luur/SwiftTips#62-massive-storyboard)<br />
+[#61 `XCTUnwrap` assertion function](https://github.com/Luur/SwiftTips#61-xctunwrap-assertion-function)<br />
+[#60 `UITableViewCell` identifier](https://github.com/Luur/SwiftTips#60-uitableviewcell-identifier)<br />
 [#59 `AlertPresentable` protocol](https://github.com/Luur/SwiftTips#59-alertpresentable-protocol)<br />
 [#58 CollectionView extension for adaptive grid layout](https://github.com/Luur/SwiftTips#58-collectionview-extension-for-adaptive-grid-layout)<br />
 [#57 Render HTML within a `UILabel`](https://github.com/Luur/SwiftTips#57-render-html-within-a-uilabel)<br />
@@ -76,17 +76,17 @@ Here's list of Swift tips & tricks with all additional sources (playgrounds, ima
 
 Below I want to show you a few simple ways how to make usage of string literals connected with `UIStoryboard` much more safer.
 
-* Global constant string literals
+* **Global constant string literals**<br />
 At first it sounds like a good idea. You only need to define the constant once and it will be available everywhere. Then if you want to change its value, there is only one place in code to change for which the effects will cascade throughout the project.
 But global constants have some disadvantages. Not as much as global variables but still enought to stop using them. It's not the best practice. I will cover the topic of andvatages and disadavntages of global constants/variables usage in my next posts.
 
-* Relatable storyboard names
+* **Relatable storyboard names**<br />
 Your storyboards should be named after the sections of which they cover. It's a general rule. If you have a storyboard which houses view controllers are related to Profile, then the name of that storyboard’s file should be `Profile.storyboard`.
 
-* Uniform storyboard identifiers
+* **Uniform storyboard identifiers**<br />
 When you want to use `Storyboard Identifiers` on your view controllers, usage of the class names as identifiers will be a good practice. For example, “ProfileViewController” would be the identifier for ProfuleViewController.  Adding this to your naming convention is a good idea.
 
-* Enum
+* **Enum**<br />
 Try to consider enums as uniform, centralized global string literal identifiers for 'UIStoryboard'. You can create UIStoryboard class extension which defines all the storyboard files you have in your project. You can also add the convenience initializer or class function to add more syntactic sugar.
 
 ```swift
@@ -122,6 +122,7 @@ I'm prety sure that almost every one has heard about "main" MVC problem known as
 Let's list main storyboard problems:
 
 * Storyboard always become unwieldy and unmanageable.
+
 ![](../master/Sources/62/img.png)
 
 * Storyboard is slow. Extremely slow. As it grows in size, it doesn't only become unhandy for developers but also for XCode. Once you tap on a storyboard file of this size, you can leave your seat, grab a cup of coffee and come back. You’ll be lucky if XCode has loaded the storyboard.
@@ -132,8 +133,6 @@ Inspite of the issues, I'm convinced there is a way to make storyboard great aga
 "A storyboard is meant to explain a story, not a saga."
 
 Storyboard can be easily splitted into multiple storyboards, with each one representing an individual story. Yes, it's OK not to have one big, fat, slowloading storyboard file but have 30+ devided storyboards.
-
-![](../master/Sources/62/img1.png)
 
 Also don't forget about Storyboard References introduced in iOS 9.
 
