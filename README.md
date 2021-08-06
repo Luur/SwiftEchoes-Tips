@@ -1,14 +1,10 @@
 <p align="center">
-    <img src="Logo.png" width="850" max-width="100%" alt="Swift Tips" />
+    <img src="logo.png" width="850" max-width="100%" alt="Swift Tips" />
 </p>
 
-<p align="center">
-    <img src="Artboard.png" width="850" max-width="100%" alt="Swift Tips" />
-</p>
+# 🔥 SwiftEchoes - Tips
 
-# 🔥 Swift tips and tricks
-
-Here's list of Swift tips & tricks with all additional sources (playgrounds, images) that I would like to share. Also you can find them on [Twitter @szubyak](https://twitter.com/szubyak), where you can ask questions and respond with feedback. I will really glad to have you there! 😀
+Here's list of tips and tricks with all additional sources (playgrounds, images) that I would like to share. Also you can find them on [Twitter @szubyak](https://twitter.com/szubyak), where you can ask questions and respond with feedback. I will really glad to have you there! 😀
 
 ## 📃 Table of contents
 
