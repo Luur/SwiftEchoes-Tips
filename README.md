@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo.png" width="850" max-width="100%" alt="Swift Tips" />
+    <img src="Logo.png" width="850" max-width="100%" alt="Swift Tips" />
 </p>
 
 # 🔥 SwiftEchoes - Tips
